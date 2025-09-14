@@ -1,0 +1,119 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvna4acg7h8hr"]
+
+[ext_resource type="Script" uid="uid://dby5ul6m4q10p" path="res://Scenes/UI/Pause/pause.gd" id="1_7vy5o"]
+[ext_resource type="PackedScene" uid="uid://kc0kjp1jkp70" path="res://Scenes/UI/Utils/BoxBackground/box_background.tscn" id="2_h6s05"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kpsrv"]
+bg_color = Color(0.359069, 0.359069, 0.359069, 0)
+
+[sub_resource type="Theme" id="Theme_kpsrv"]
+/styles/background = null
+
+[node name="Pause" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_7vy5o")
+metadata/_edit_lock_ = true
+
+[node name="ButtonBlock" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="BoxBackground2" parent="." node_paths=PackedStringArray("node_ref") instance=ExtResource("2_h6s05")]
+offset_left = 530.5
+offset_top = 208.5
+offset_right = 530.5
+offset_bottom = 208.5
+grow_horizontal = 1
+grow_vertical = 1
+node_ref = NodePath("../Pause Label")
+
+[node name="Pause Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.222
+anchor_right = 0.5
+anchor_bottom = 0.222
+offset_left = -55.5
+offset_top = 6.14398
+offset_right = 55.5
+offset_bottom = 29.144
+grow_horizontal = 2
+text = "Pause"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="BoxBackground" parent="." node_paths=PackedStringArray("node_ref") instance=ExtResource("2_h6s05")]
+offset_left = 530.5
+offset_top = 208.5
+offset_right = 530.5
+offset_bottom = 208.5
+grow_horizontal = 1
+grow_vertical = 1
+node_ref = NodePath("../VBoxContainer")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.5
+offset_top = -110.5
+offset_right = 78.5
+offset_bottom = 110.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Void" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_kpsrv")
+
+[node name="Continue" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Continuar"
+
+[node name="Config" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Configurações"
+
+[node name="Void2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_kpsrv")
+
+[node name="Void3" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_kpsrv")
+
+[node name="MainMenu" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Voltar ao Menu"
+
+[node name="QuitGame" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = SubResource("Theme_kpsrv")
+text = "Sair do Jogo"
+
+[node name="Void4" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_kpsrv")
+
+[connection signal="pressed" from="VBoxContainer/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="VBoxContainer/Config" to="." method="_on_config_pressed"]
+[connection signal="pressed" from="VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitGame" to="." method="_on_quit_game_pressed"]

@@ -2,7 +2,7 @@ extends Control
 
 
 func _on_start_pressed() -> void:
-	SceneLoader.load_scene("res://Scenes/Game/Placeholder.tscn")
+	SceneLoader.load_scene("res://Scenes/Game/Placeholder/Placeholder.tscn")
 	pass # Replace with function body.
 
 
