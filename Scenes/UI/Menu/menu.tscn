@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dl6nhc1603s8e"]
+[gd_scene load_steps=3 format=3 uid="uid://dl6nhc1603s8e"]
 
 [ext_resource type="Script" uid="uid://bchvnm11rvshb" path="res://Scenes/UI/Menu/menu.gd" id="1_vf0ft"]
+[ext_resource type="AudioStream" uid="uid://cxwuslxnx65cg" path="res://Assets/Music/Scott Joplin   The Easy Winners A Ragtime Two Step (1901.mp3" id="2_s3jnw"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -56,6 +57,10 @@ text = "Creditos"
 layout_mode = 2
 text = "Sair
 "
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_s3jnw")
+autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Config" to="." method="_on_config_pressed"]

@@ -2,6 +2,7 @@ extends Control
 
 
 func _on_start_pressed() -> void:
+	SceneLoader.load_scene("res://Scenes/Game/Placeholder.tscn")
 	pass # Replace with function body.
 
 
@@ -13,6 +14,7 @@ func _on_config_pressed() -> void:
 
 
 func _on_credits_pressed() -> void:
+	SceneLoader.load_scene("res://Scenes/Credits/Credits.tscn")
 	pass # Replace with function body.
 
 

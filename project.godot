@@ -11,8 +11,17 @@ config_version=5
 [application]
 
 config/name="42-Game-Jam"
+run/main_scene="uid://dl6nhc1603s8e"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout=""
+
+[autoload]
+
+SceneLoader="*res://Singletons/scene_loader.gd"
 
 [rendering]
 
