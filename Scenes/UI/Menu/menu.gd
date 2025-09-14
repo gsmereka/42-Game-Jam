@@ -6,6 +6,7 @@ func _on_start_pressed() -> void:
 	pass # Replace with function body.
 
 
+
 func _on_config_pressed() -> void:
 	var node = preload("res://Scenes/UI/Config/config.tscn")
 	var config = node.instantiate()
