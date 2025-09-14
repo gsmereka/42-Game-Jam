@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://bg12cpgnw5lpa"]
+[gd_scene load_steps=2 format=3 uid="uid://bg12cpgnw5lpa"]
+
+[ext_resource type="Script" uid="uid://cyq1bcjc1qx3o" path="res://Scenes/Credits/credits.gd" id="1_mdxjw"]
 
 [node name="Credits" type="Node2D"]
+script = ExtResource("1_mdxjw")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -63,12 +66,10 @@ text = "Time do Balacobaco"
 
 [node name="Label11" type="Label" parent="CanvasLayer/ColorRect/VBoxContainer"]
 layout_mode = 2
-text = "Time do Balacobaco"
 
 [node name="Label12" type="Label" parent="CanvasLayer/ColorRect/VBoxContainer"]
 layout_mode = 2
-text = "Time do Balacobaco"
 
 [node name="Label13" type="Label" parent="CanvasLayer/ColorRect/VBoxContainer"]
 layout_mode = 2
-text = "Time do Balacobaco"
+text = "Pressione Esc pra voltar"

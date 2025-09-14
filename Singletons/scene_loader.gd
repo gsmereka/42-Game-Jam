@@ -32,6 +32,7 @@ func _process(_delta):
 		var new_node = new_scene.instantiate()
 
 		# Substitui a cena atual
+		
 		var current_scene = get_tree().current_scene
 		get_tree().get_root().add_child(new_node)
 		get_tree().current_scene = new_node
@@ -41,3 +42,4 @@ func _process(_delta):
 		if loading_node:
 			loading_node.queue_free()
 			loading_node = null
+		set_process(true)
