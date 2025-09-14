@@ -1,6 +1,7 @@
 extends OptionButton
 
-
+# Durante o modo de edição, o botao de fullscreen so funciona se nas configurações,
+# o jogo começar como tela cheia
 func _on_item_selected(index: int) -> void:
 	if index == 0:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN, 0)
