@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dsqdj3rnksu66"]
+[gd_scene load_steps=9 format=3 uid="uid://dsqdj3rnksu66"]
 
 [ext_resource type="Script" uid="uid://n6ntknr6citb" path="res://Scenes/Game/Placeholder/placeholder.gd" id="1_dnif1"]
 [ext_resource type="AudioStream" uid="uid://clofo7hgx4sfj" path="res://Assets/Music/Castle_Music.mp3" id="2_mk1xm"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://t3387fnnbk3b" path="res://Assets/graveyardtilesetnew/png/Objects/ArrowSign.png" id="3_mk1xm"]
 [ext_resource type="Texture2D" uid="uid://ccdvdqq2uirck" path="res://Assets/graveyardtilesetnew/png/Objects/DeadBush.png" id="4_5gvfw"]
 [ext_resource type="Texture2D" uid="uid://c1qko03de7r5x" path="res://Assets/graveyardtilesetnew/png/Objects/Skeleton.png" id="5_2pcka"]
+[ext_resource type="PackedScene" uid="uid://b5fifm7jjeqbe" path="res://Scenes/Game/characters/player.tscn" id="7_mk1xm"]
+[ext_resource type="PackedScene" uid="uid://bqj85e0r6dsgb" path="res://Scenes/Game/objects/wall.tscn" id="8_5gvfw"]
 
 [node name="Placeholder" type="Node2D"]
 script = ExtResource("1_dnif1")
@@ -52,3 +54,27 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 text = "Precione Esc para o menu de pause"
+
+[node name="Player" parent="." instance=ExtResource("7_mk1xm")]
+position = Vector2(563, 259)
+
+[node name="Wall2" parent="." instance=ExtResource("8_5gvfw")]
+position = Vector2(484, 422)
+
+[node name="Wall3" parent="." instance=ExtResource("8_5gvfw")]
+position = Vector2(520, 421)
+
+[node name="Wall4" parent="." instance=ExtResource("8_5gvfw")]
+position = Vector2(449, 423)
+
+[node name="Wall5" parent="." instance=ExtResource("8_5gvfw")]
+position = Vector2(562, 372)
+
+[node name="Wall6" parent="." instance=ExtResource("8_5gvfw")]
+position = Vector2(500, 303)
+
+[node name="Wall7" parent="." instance=ExtResource("8_5gvfw")]
+position = Vector2(460, 301)
+
+[node name="Wall8" parent="." instance=ExtResource("8_5gvfw")]
+position = Vector2(420, 357)
