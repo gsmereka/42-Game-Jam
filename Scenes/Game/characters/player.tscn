@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5fifm7jjeqbe"]
+
+[ext_resource type="Texture2D" uid="uid://x4gj4jhbggwf" path="res://Assets/player/side.png" id="2_1m55r"]
+[ext_resource type="Script" uid="uid://c350gxhqu2vjn" path="res://Scenes/Game/characters/camera_2d.gd" id="2_w2e73"]
+
+[sub_resource type="GDScript" id="GDScript_bdgdu"]
+script/source = "extends CharacterBody2D
+
+@export var moveSpeed: float = 200.0;
+
+func _physics_process(delta: float) -> void:
+	move(delta)
+
+func manageSprites(vector: Vector2) -> void:
+	if (vector == Vector2.ZERO):
+		return
+	var sprite: Texture2D = load(\"res://Assets/player/front.png\") if vector.y > 0 else \\
+							load(\"res://Assets/player/back.png\") if vector.y < 0 else \\
+							load(\"res://Assets/player/side.png\")
+								
+	$Sprite2D.texture = sprite
+	if (vector.x):
+		$Sprite2D.flip_h = vector.x < 0
+func move(delta: float) -> void:
+	var vector = Vector2.ZERO
+	
+	vector.x = Input.get_action_strength(\"ui_right\") - Input.get_action_strength(\"ui_left\")
+	vector.y = Input.get_action_strength(\"ui_down\") - Input.get_action_strength(\"ui_up\")
+	manageSprites(vector)
+		
+	
+	vector = vector.normalized()
+	velocity = vector * moveSpeed
+	move_and_slide()
+	
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kkasu"]
+size = Vector2(32, 32)
+
+[node name="Player" type="Node2D"]
+
+[node name="Node2D" type="CharacterBody2D" parent="."]
+script = SubResource("GDScript_bdgdu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D"]
+shape = SubResource("RectangleShape2D_kkasu")
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+texture = ExtResource("2_1m55r")
+
+[node name="Camera2D" type="Camera2D" parent="Node2D"]
+limit_left = 0
+limit_top = 0
+limit_smoothed = true
+script = ExtResource("2_w2e73")
