@@ -6,6 +6,7 @@
 size = Vector2(32, 32)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_43s47"]
+cull_mode = 1
 polygon = PackedVector2Array(16, 16, 16, -16, -16, -16, -16, 16)
 
 [node name="Wall" type="Node2D"]
