@@ -43,7 +43,6 @@ player = NodePath("../..")
 fov = NodePath("../../FOV")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
 
 [node name="FOV" type="Node2D" parent="."]
 position = Vector2(-2, 0)
