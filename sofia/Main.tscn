@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkc5qx6i17ubd"]
+
+[ext_resource type="Texture2D" uid="uid://b6k4hkde4sr6u" path="res://Assets/graveyardtilesetnew/png/BG.png" id="1_elqb8"]
+[ext_resource type="PackedScene" uid="uid://dwwf2caitbsdd" path="res://scenes/sofia/Enemy.tscn" id="2_rvslj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0bbpv"]
+size = Vector2(4, 666)
+
+[node name="Main" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1156.0
+offset_bottom = 736.0
+texture = ExtResource("1_elqb8")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(791, 204)
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-9, 119)
+shape = SubResource("RectangleShape2D_0bbpv")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="Enemy" parent="." instance=ExtResource("2_rvslj")]
+position = Vector2(1024, 314)
+
+[node name="RayCast2D" type="RayCast2D" parent="Enemy"]
+visible = false
+target_position = Vector2(0, 200)
