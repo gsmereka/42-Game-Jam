@@ -1,7 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://bffcrsi3nfqqb"]
+[gd_scene load_steps=14 format=3 uid="uid://bffcrsi3nfqqb"]
 
 [ext_resource type="Script" uid="uid://bpgw1tdp35qy7" path="res://Scenes/Game/characters/Player/player.gd" id="1_hpoch"]
-[ext_resource type="Texture2D" uid="uid://x4gj4jhbggwf" path="res://Assets/player/side.png" id="1_yu1hh"]
+[ext_resource type="Texture2D" uid="uid://do6w3tkcs1qs3" path="res://Assets/player/prota-idle.png" id="2_42rbx"]
 [ext_resource type="PackedScene" uid="uid://c1diffaf2650k" path="res://Scenes/StateMachine/state_manager.tscn" id="3_42rbx"]
 [ext_resource type="Script" uid="uid://cr2u3xjfuoink" path="res://Scenes/Game/characters/state_move.gd" id="4_awq5b"]
 [ext_resource type="Texture2D" uid="uid://d20b5ximn260m" path="res://Assets/Utils/cw.png" id="5_42rbx"]
@@ -9,6 +9,43 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kkasu"]
 size = Vector2(32, 32)
+
+[sub_resource type="Animation" id="Animation_42rbx"]
+resource_name = "Player_Idle"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_awq5b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e3wm0"]
+_data = {
+&"Player_Idle": SubResource("Animation_42rbx"),
+&"RESET": SubResource("Animation_awq5b")
+}
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ipuyi"]
 closed = false
@@ -28,16 +65,24 @@ script = ExtResource("1_hpoch")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_kkasu")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_e3wm0")
+}
+autoplay = "Player_Idle"
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_yu1hh")
+texture = ExtResource("2_42rbx")
+hframes = 2
 
 [node name="StateManager" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("3_42rbx")]
 initial_state = NodePath("StateMove")
 
-[node name="StateMove" type="Node2D" parent="StateManager" node_paths=PackedStringArray("player", "fov")]
+[node name="StateMove" type="Node2D" parent="StateManager" node_paths=PackedStringArray("player", "fov", "animation")]
 script = ExtResource("4_awq5b")
 player = NodePath("../..")
 fov = NodePath("../../FOV")
+animation = NodePath("../../AnimationPlayer")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
