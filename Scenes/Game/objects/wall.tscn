@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bqj85e0r6dsgb"]
+[gd_scene load_steps=4 format=3 uid="uid://bqj85e0r6dsgb"]
 
 [ext_resource type="Texture2D" uid="uid://lqr68mqnfbds" path="res://Assets/player/back.png" id="1_43s47"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w1a8w"]
 size = Vector2(32, 32)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_43s47"]
+cull_mode = 1
+polygon = PackedVector2Array(16, 16, 16, -16, -16, -16, -16, 16)
 
 [node name="Wall" type="Node2D"]
 
@@ -14,3 +18,8 @@ shape = SubResource("RectangleShape2D_w1a8w")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
 texture = ExtResource("1_43s47")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="CharacterBody2D"]
+self_modulate = Color(1, 1, 1, 0)
+occluder = SubResource("OccluderPolygon2D_43s47")
+occluder_light_mask = 9
