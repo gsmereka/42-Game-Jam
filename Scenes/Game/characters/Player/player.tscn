@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://bffcrsi3nfqqb"]
+
+[ext_resource type="Script" uid="uid://bpgw1tdp35qy7" path="res://Scenes/Game/characters/Player/player.gd" id="1_hpoch"]
+[ext_resource type="Texture2D" uid="uid://x4gj4jhbggwf" path="res://Assets/player/side.png" id="1_yu1hh"]
+[ext_resource type="PackedScene" uid="uid://c1diffaf2650k" path="res://Scenes/StateMachine/state_manager.tscn" id="3_42rbx"]
+[ext_resource type="Script" uid="uid://cr2u3xjfuoink" path="res://Scenes/Game/characters/state_move.gd" id="4_awq5b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kkasu"]
+size = Vector2(32, 32)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_hpoch")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kkasu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_yu1hh")
+
+[node name="StateManager" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("3_42rbx")]
+initial_state = NodePath("StateMove")
+
+[node name="StateMove" type="Node2D" parent="StateManager" node_paths=PackedStringArray("player")]
+script = ExtResource("4_awq5b")
+player = NodePath("../..")
+
+[node name="Camera2D" type="Camera2D" parent="."]

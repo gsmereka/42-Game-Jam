@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://t3387fnnbk3b" path="res://Assets/graveyardtilesetnew/png/Objects/ArrowSign.png" id="3_mk1xm"]
 [ext_resource type="Texture2D" uid="uid://ccdvdqq2uirck" path="res://Assets/graveyardtilesetnew/png/Objects/DeadBush.png" id="4_5gvfw"]
 [ext_resource type="Texture2D" uid="uid://c1qko03de7r5x" path="res://Assets/graveyardtilesetnew/png/Objects/Skeleton.png" id="5_2pcka"]
-[ext_resource type="PackedScene" uid="uid://b5fifm7jjeqbe" path="res://Scenes/Game/characters/player.tscn" id="7_mk1xm"]
+[ext_resource type="PackedScene" uid="uid://bffcrsi3nfqqb" path="res://Scenes/Game/characters/Player/player.tscn" id="8_2pcka"]
 [ext_resource type="PackedScene" uid="uid://bqj85e0r6dsgb" path="res://Scenes/Game/objects/wall.tscn" id="8_5gvfw"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5gvfw"]
@@ -46,8 +46,10 @@ texture = ExtResource("4_5gvfw")
 position = Vector2(594, 567)
 texture = ExtResource("5_2pcka")
 
-[node name="Player" parent="Node2D" instance=ExtResource("7_mk1xm")]
-position = Vector2(1019, 532)
+[node name="Node2D" type="Node2D" parent="Node2D"]
+position = Vector2(488, 365)
+
+[node name="Player" parent="Node2D/Node2D" instance=ExtResource("8_2pcka")]
 
 [node name="Wall2" parent="Node2D" instance=ExtResource("8_5gvfw")]
 position = Vector2(484, 422)
