@@ -2,21 +2,16 @@ extends State
 
 @export var player : Player
 @export var fov : Node2D
+@export var animation : AnimationPlayer
 
 func Physics_Update(delta):
 		move(delta)
 		fov.look_at(get_global_mouse_position())
 
 func manageSprites(vector: Vector2) -> void:
-	if (vector == Vector2.ZERO):
-		return
-	var sprite: Texture2D = load("res://Assets/player/front.png") if vector.y > 0 else \
-							load("res://Assets/player/back.png") if vector.y < 0 else \
-							load("res://Assets/player/side.png")
-								
-	$"../../Sprite2D".texture = sprite
-	if (vector.x):
-		$"../../Sprite2D".flip_h = vector.x < 0
+	if !animation.is_playing():
+		animation.play("Player_Idle")
+	pass
 
 func move(delta: float) -> void:
 	var vector = Vector2.ZERO
