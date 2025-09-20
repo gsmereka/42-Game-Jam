@@ -17,6 +17,7 @@ light_mode = 2
 
 [node name="Placeholder" type="Node2D"]
 material = SubResource("CanvasItemMaterial_5gvfw")
+scale = Vector2(2, 2)
 
 [node name="Node2D" type="Node2D" parent="."]
 script = ExtResource("1_dnif1")

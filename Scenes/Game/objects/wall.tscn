@@ -20,6 +20,7 @@ shape = SubResource("RectangleShape2D_w1a8w")
 texture = ExtResource("1_43s47")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="CharacterBody2D"]
-self_modulate = Color(1, 1, 1, 0)
+light_mask = 0
+visibility_layer = 0
 occluder = SubResource("OccluderPolygon2D_43s47")
 occluder_light_mask = 9
