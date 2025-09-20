@@ -22,7 +22,6 @@ func move(delta: float) -> void:
 	vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	manageSprites(vector)
-		
 	
 	vector = vector.normalized()
 
