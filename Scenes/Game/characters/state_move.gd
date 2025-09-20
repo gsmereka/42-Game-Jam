@@ -1,9 +1,11 @@
 extends State
 
 @export var player : Player
+@export var fov : Node2D
 
 func Physics_Update(delta):
 		move(delta)
+		fov.look_at(get_global_mouse_position())
 
 func manageSprites(vector: Vector2) -> void:
 	if (vector == Vector2.ZERO):

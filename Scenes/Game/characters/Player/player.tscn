@@ -1,12 +1,26 @@
-[gd_scene load_steps=6 format=3 uid="uid://bffcrsi3nfqqb"]
+[gd_scene load_steps=11 format=3 uid="uid://bffcrsi3nfqqb"]
 
 [ext_resource type="Script" uid="uid://bpgw1tdp35qy7" path="res://Scenes/Game/characters/Player/player.gd" id="1_hpoch"]
 [ext_resource type="Texture2D" uid="uid://x4gj4jhbggwf" path="res://Assets/player/side.png" id="1_yu1hh"]
 [ext_resource type="PackedScene" uid="uid://c1diffaf2650k" path="res://Scenes/StateMachine/state_manager.tscn" id="3_42rbx"]
 [ext_resource type="Script" uid="uid://cr2u3xjfuoink" path="res://Scenes/Game/characters/state_move.gd" id="4_awq5b"]
+[ext_resource type="Texture2D" uid="uid://d20b5ximn260m" path="res://Assets/Utils/cw.png" id="5_42rbx"]
+[ext_resource type="Texture2D" uid="uid://c8h1c6jc3gp4x" path="res://Assets/Utils/light.png" id="6_awq5b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kkasu"]
 size = Vector2(32, 32)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ipuyi"]
+closed = false
+polygon = PackedVector2Array(0, 0, 1000, 0)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_67hjq"]
+closed = false
+polygon = PackedVector2Array(0, -5, 0, 5)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_42rbx"]
+blend_mode = 2
+light_mode = 2
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_hpoch")
@@ -20,8 +34,92 @@ texture = ExtResource("1_yu1hh")
 [node name="StateManager" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("3_42rbx")]
 initial_state = NodePath("StateMove")
 
-[node name="StateMove" type="Node2D" parent="StateManager" node_paths=PackedStringArray("player")]
+[node name="StateMove" type="Node2D" parent="StateManager" node_paths=PackedStringArray("player", "fov")]
 script = ExtResource("4_awq5b")
 player = NodePath("../..")
+fov = NodePath("../../FOV")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="FOV" type="Node2D" parent="."]
+
+[node name="small_l" type="PointLight2D" parent="FOV"]
+position = Vector2(-10, 0)
+blend_mode = 2
+range_item_cull_mask = 8
+shadow_enabled = true
+shadow_item_cull_mask = 8
+texture = ExtResource("5_42rbx")
+offset = Vector2(10, 0)
+texture_scale = 0.15
+
+[node name="small_l2" type="PointLight2D" parent="FOV"]
+position = Vector2(-10, 0)
+blend_mode = 2
+range_item_cull_mask = 8
+shadow_enabled = true
+shadow_item_cull_mask = 8
+texture = ExtResource("6_awq5b")
+offset = Vector2(10, 0)
+texture_scale = 1.5
+
+[node name="big_l" type="PointLight2D" parent="FOV"]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(34, 0)
+blend_mode = 2
+range_item_cull_mask = 8
+shadow_enabled = true
+shadow_item_cull_mask = 8
+texture = ExtResource("5_42rbx")
+texture_scale = 3.0
+
+[node name="left" type="LightOccluder2D" parent="FOV"]
+position = Vector2(0, -5)
+rotation = -0.785398
+occluder = SubResource("OccluderPolygon2D_ipuyi")
+occluder_light_mask = 8
+
+[node name="right" type="LightOccluder2D" parent="FOV"]
+position = Vector2(0, 5)
+rotation = 0.785398
+occluder = SubResource("OccluderPolygon2D_ipuyi")
+occluder_light_mask = 8
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="FOV"]
+occluder = SubResource("OccluderPolygon2D_67hjq")
+occluder_light_mask = 8
+
+[node name="Shadows" type="CanvasGroup" parent="."]
+self_modulate = Color(1, 1, 1, 0.290196)
+z_index = 2
+
+[node name="Shadow" type="ColorRect" parent="Shadows"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -789.0
+offset_top = -585.0
+offset_right = 980.0
+offset_bottom = 543.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0, 0, 0, 1)
+
+[node name="Mask" type="ColorRect" parent="Shadows"]
+light_mask = 8
+visibility_layer = 8
+material = SubResource("CanvasItemMaterial_42rbx")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -789.0
+offset_top = -585.0
+offset_right = 980.0
+offset_bottom = 543.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
