@@ -26,17 +26,21 @@ func _physics_process(delta: float) -> void:
 
 func die():
 	if is_dead:
-		return  # evita tocar som de morte de novo
+		return
 	is_dead = true
-
+	
 	death_sound.play()
 	death_screen.visible = true
+	$DeathPose.show()
+	$"Sprite/Sprite-0002".hide()
 
 	velocity = Vector2.ZERO
 	set_physics_process(false)
-	$CollisionShape2D.disabled = true
+	$CollisionShape2D.call_deferred("set_disabled", true)
 
 	await get_tree().create_timer(2.4).timeout
+	# força state para "DyingState"
+	$StateManager.force_change_state("DyingState")
 	get_tree().change_scene_to_file("res://Scenes/UI/Menu/menu.tscn")
 
 
