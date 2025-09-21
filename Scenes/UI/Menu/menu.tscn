@@ -1,10 +1,71 @@
-[gd_scene load_steps=6 format=3 uid="uid://dl6nhc1603s8e"]
+[gd_scene load_steps=9 format=3 uid="uid://dl6nhc1603s8e"]
 
 [ext_resource type="Script" uid="uid://bchvnm11rvshb" path="res://Scenes/UI/Menu/menu.gd" id="1_vf0ft"]
 [ext_resource type="Script" uid="uid://b2tduj6h2x20s" path="res://Scenes/UI/Menu/carousel_menu.gd" id="2_5cpsf"]
 [ext_resource type="AudioStream" uid="uid://cxwuslxnx65cg" path="res://Assets/Music/Scott Joplin   The Easy Winners A Ragtime Two Step (1901.mp3" id="2_s3jnw"]
 [ext_resource type="PackedScene" uid="uid://i72f1mh03gxx" path="res://Scenes/UI/Menu/MenuBackground.tscn" id="3_7utnp"]
 [ext_resource type="Theme" uid="uid://cbyo6hgahchbx" path="res://Scenes/UI/Thema/menuThema.tres" id="4_7utnp"]
+
+[sub_resource type="Animation" id="Animation_7utnp"]
+resource_name = "Intro"
+length = 16.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 15.7667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(960, 540), Vector2(960, 2200)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:vel")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 11.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [300, 0]
+}
+
+[sub_resource type="Animation" id="Animation_5cpsf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(960, 540)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:vel")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [300]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5cpsf"]
+_data = {
+&"Intro": SubResource("Animation_7utnp"),
+&"RESET": SubResource("Animation_5cpsf")
+}
 
 [node name="Menu" type="Control"]
 texture_filter = 1
@@ -34,6 +95,54 @@ offset_left = 1920.0
 offset_right = 1920.0
 
 [node name="TextureRect3" parent="CarouselMenu" instance=ExtResource("3_7utnp")]
+layout_mode = 1
+offset_left = -1920.0
+offset_right = -1920.0
+
+[node name="CarouselMenu2" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1032.0
+offset_bottom = 1032.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_5cpsf")
+
+[node name="TextureRect" parent="CarouselMenu2" instance=ExtResource("3_7utnp")]
+layout_mode = 1
+
+[node name="TextureRect2" parent="CarouselMenu2" instance=ExtResource("3_7utnp")]
+layout_mode = 1
+offset_left = 1920.0
+offset_right = 1920.0
+
+[node name="TextureRect3" parent="CarouselMenu2" instance=ExtResource("3_7utnp")]
+layout_mode = 1
+offset_left = -1920.0
+offset_right = -1920.0
+
+[node name="CarouselMenu3" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2080.0
+offset_bottom = 2080.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_5cpsf")
+
+[node name="TextureRect" parent="CarouselMenu3" instance=ExtResource("3_7utnp")]
+layout_mode = 1
+
+[node name="TextureRect2" parent="CarouselMenu3" instance=ExtResource("3_7utnp")]
+layout_mode = 1
+offset_left = 1920.0
+offset_right = 1920.0
+
+[node name="TextureRect3" parent="CarouselMenu3" instance=ExtResource("3_7utnp")]
 layout_mode = 1
 offset_left = -1920.0
 offset_right = -1920.0
@@ -104,6 +213,264 @@ stream = ExtResource("2_s3jnw")
 autoplay = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_5cpsf")
+}
+autoplay = "Intro"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="City" type="Node2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="Predios" type="Node2D" parent="City"]
+position = Vector2(-960, -540)
+
+[node name="ColorRect" type="ColorRect" parent="City/Predios"]
+offset_left = 207.0
+offset_top = 2074.0
+offset_right = 507.0
+offset_bottom = 2702.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="City/Predios"]
+offset_left = 691.0
+offset_top = 2397.0
+offset_right = 907.0
+offset_bottom = 2705.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="City/Predios"]
+offset_left = -65.0
+offset_top = 2366.0
+offset_right = 151.0
+offset_bottom = 2674.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="City/Predios"]
+offset_left = 1120.0
+offset_top = 2294.0
+offset_right = 1901.0
+offset_bottom = 2719.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="City/Predios"]
+offset_left = 1617.0
+offset_top = 2124.0
+offset_right = 1897.0
+offset_bottom = 2549.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="City/Predios"]
+offset_left = 1773.0
+offset_top = 1957.0
+offset_right = 2053.0
+offset_bottom = 2716.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="City/Predios"]
+offset_left = -236.0
+offset_top = 2577.0
+offset_right = 2236.0
+offset_bottom = 3351.0
+color = Color(0, 0, 0, 1)
+
+[node name="Lights" type="Node2D" parent="City"]
+
+[node name="tuple" type="Node2D" parent="City/Lights"]
+
+[node name="ColorRect" type="ColorRect" parent="City/Lights/tuple"]
+offset_left = -536.0
+offset_top = 1608.0
+offset_right = -496.0
+offset_bottom = 1620.0
+
+[node name="ColorRect2" type="ColorRect" parent="City/Lights/tuple"]
+offset_left = -696.0
+offset_top = 1608.0
+offset_right = -656.0
+offset_bottom = 1620.0
+
+[node name="tuple2" type="Node2D" parent="City/Lights"]
+position = Vector2(0, 64)
+
+[node name="ColorRect" type="ColorRect" parent="City/Lights/tuple2"]
+offset_left = -536.0
+offset_top = 1608.0
+offset_right = -496.0
+offset_bottom = 1620.0
+
+[node name="ColorRect2" type="ColorRect" parent="City/Lights/tuple2"]
+offset_left = -696.0
+offset_top = 1608.0
+offset_right = -656.0
+offset_bottom = 1620.0
+
+[node name="tuple3" type="Node2D" parent="City/Lights"]
+position = Vector2(0, 144)
+
+[node name="ColorRect" type="ColorRect" parent="City/Lights/tuple3"]
+offset_left = -536.0
+offset_top = 1608.0
+offset_right = -496.0
+offset_bottom = 1620.0
+
+[node name="ColorRect2" type="ColorRect" parent="City/Lights/tuple3"]
+offset_left = -696.0
+offset_top = 1608.0
+offset_right = -656.0
+offset_bottom = 1620.0
+
+[node name="tuple4" type="Node2D" parent="City/Lights"]
+position = Vector2(0, 250)
+
+[node name="ColorRect" type="ColorRect" parent="City/Lights/tuple4"]
+offset_left = -536.0
+offset_top = 1608.0
+offset_right = -496.0
+offset_bottom = 1620.0
+
+[node name="ColorRect2" type="ColorRect" parent="City/Lights/tuple4"]
+offset_left = -696.0
+offset_top = 1608.0
+offset_right = -656.0
+offset_bottom = 1620.0
+
+[node name="tuple5" type="Node2D" parent="City/Lights"]
+position = Vector2(-296, 268)
+
+[node name="ColorRect" type="ColorRect" parent="City/Lights/tuple5"]
+offset_left = -589.0
+offset_top = 1608.0
+offset_right = -549.0
+offset_bottom = 1620.0
+
+[node name="ColorRect2" type="ColorRect" parent="City/Lights/tuple5"]
+offset_left = -696.0
+offset_top = 1608.0
+offset_right = -656.0
+offset_bottom = 1620.0
+
+[node name="tuple6" type="Node2D" parent="City/Lights"]
+position = Vector2(-296, 324)
+
+[node name="ColorRect" type="ColorRect" parent="City/Lights/tuple6"]
+offset_left = -589.0
+offset_top = 1608.0
+offset_right = -549.0
+offset_bottom = 1620.0
+
+[node name="ColorRect2" type="ColorRect" parent="City/Lights/tuple6"]
+offset_left = -696.0
+offset_top = 1608.0
+offset_right = -656.0
+offset_bottom = 1620.0
+
+[node name="tuple7" type="Node2D" parent="City/Lights"]
+position = Vector2(-296, 388)
+
+[node name="ColorRect" type="ColorRect" parent="City/Lights/tuple7"]
+offset_left = -589.0
+offset_top = 1608.0
+offset_right = -549.0
+offset_bottom = 1620.0
+
+[node name="ColorRect2" type="ColorRect" parent="City/Lights/tuple7"]
+offset_left = -696.0
+offset_top = 1608.0
+offset_right = -656.0
+offset_bottom = 1620.0
+
+[node name="tuple8" type="Node2D" parent="City/Lights"]
+position = Vector2(888, 228)
+
+[node name="ColorRect" type="ColorRect" parent="City/Lights/tuple8"]
+offset_left = -589.0
+offset_top = 1608.0
+offset_right = -549.0
+offset_bottom = 1620.0
+
+[node name="ColorRect2" type="ColorRect" parent="City/Lights/tuple8"]
+offset_left = -696.0
+offset_top = 1608.0
+offset_right = -656.0
+offset_bottom = 1620.0
+
+[node name="tuple9" type="Node2D" parent="City/Lights"]
+position = Vector2(1112, 228)
+
+[node name="ColorRect" type="ColorRect" parent="City/Lights/tuple9"]
+offset_left = -589.0
+offset_top = 1608.0
+offset_right = -549.0
+offset_bottom = 1620.0
+
+[node name="ColorRect2" type="ColorRect" parent="City/Lights/tuple9"]
+offset_left = -696.0
+offset_top = 1608.0
+offset_right = -656.0
+offset_bottom = 1620.0
+
+[node name="tuple10" type="Node2D" parent="City/Lights"]
+position = Vector2(1576, -84)
+
+[node name="ColorRect" type="ColorRect" parent="City/Lights/tuple10"]
+offset_left = -589.0
+offset_top = 1608.0
+offset_right = -549.0
+offset_bottom = 1620.0
+
+[node name="ColorRect2" type="ColorRect" parent="City/Lights/tuple10"]
+offset_left = -696.0
+offset_top = 1608.0
+offset_right = -656.0
+offset_bottom = 1620.0
+
+[node name="tuple11" type="Node2D" parent="City/Lights"]
+position = Vector2(1576, 236)
+
+[node name="ColorRect" type="ColorRect" parent="City/Lights/tuple11"]
+offset_left = -589.0
+offset_top = 1608.0
+offset_right = -549.0
+offset_bottom = 1620.0
+
+[node name="ColorRect2" type="ColorRect" parent="City/Lights/tuple11"]
+offset_left = -696.0
+offset_top = 1608.0
+offset_right = -656.0
+offset_bottom = 1620.0
+
+[node name="tuple12" type="Node2D" parent="City/Lights"]
+position = Vector2(1576, 85)
+
+[node name="ColorRect" type="ColorRect" parent="City/Lights/tuple12"]
+offset_left = -589.0
+offset_top = 1608.0
+offset_right = -549.0
+offset_bottom = 1620.0
+
+[node name="ColorRect2" type="ColorRect" parent="City/Lights/tuple12"]
+offset_left = -696.0
+offset_top = 1608.0
+offset_right = -656.0
+offset_bottom = 1620.0
+
+[node name="tuple13" type="Node2D" parent="City/Lights"]
+position = Vector2(456, 340)
+
+[node name="ColorRect" type="ColorRect" parent="City/Lights/tuple13"]
+offset_left = -589.0
+offset_top = 1608.0
+offset_right = -549.0
+offset_bottom = 1620.0
+
+[node name="ColorRect2" type="ColorRect" parent="City/Lights/tuple13"]
+offset_left = -696.0
+offset_top = 1608.0
+offset_right = -656.0
+offset_bottom = 1620.0
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Config" to="." method="_on_config_pressed"]

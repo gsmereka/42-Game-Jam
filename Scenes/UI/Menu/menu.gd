@@ -1,5 +1,6 @@
 extends Control
 
+@export var vel : int = 300
 
 func _on_start_pressed() -> void:
 	SceneLoader.load_scene("res://Scenes/Game/Placeholder/Placeholder.tscn")
