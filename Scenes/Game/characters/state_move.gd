@@ -66,10 +66,18 @@ func move(delta: float) -> void:
 	player.velocity = vector * speedt
 	player.move_and_slide()
 	
+	var p = $"../../AudioStreamPlayer2D"
 	if vector != Vector2.ZERO:
-		if not footstep_sound.playing:
-			footstep_sound.play()
+		if speedt > player.moveSpeed:
+			footstep_sound.stop()
+			if !p.playing:
+				p.play()
+		else:
+			p.stop()
+			if not footstep_sound.playing:
+				footstep_sound.play()
 	else:
+		p.stop()
 		footstep_sound.stop()
 
 func Exit():

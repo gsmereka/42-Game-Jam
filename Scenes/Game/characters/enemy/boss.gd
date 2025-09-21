@@ -16,8 +16,9 @@ func _process(delta: float) -> void:
 		#get_in()
 		launch_circular_burst_towards_player(self.get_parent().get_node("Player").position)
 	if get_parent().bossLife <= 0:
+			get_parent().die()
 			queue_free()
-	
+
 
 func startBoss() ->void:
 	$AnimatedSprite2D.frame = 0;
