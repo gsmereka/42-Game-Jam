@@ -1,19 +1,12 @@
 extends CharacterBody2D
 @onready var bala_scene = preload("res://Scenes/Game/characters/enemy/bullet.tscn")
-var out = false
-@export var actvate: bool = false
 var actvated: bool = false
-
-func _ready() -> void:
-	if actvate:
-		startBoss()
-
-var	use_atackk = true
-
+var	use_atackk = false
 func _physics_process(delta: float) -> void:
-	if (actvate && !actvated): startBoss()
 	if (!get_parent().startBossBattle): return;
-	
+	if (!actvated):
+		startBoss()
+		return
 	#get_out()
 	if (use_atackk):
 		openCircle(delta)
@@ -22,10 +15,15 @@ func _physics_process(delta: float) -> void:
 		#get_in()
 		launch_circular_burst_towards_player(self.get_parent().get_node("Player").position)
 
+func _process(delta: float) -> void:
+	if get_parent().bossLife <= 0:
+		queue_free()
+
 func startBoss() ->void:
 	$AnimatedSprite2D.frame = 0;
 	$AnimatedSprite2D.play("default")
 	actvated = true
+	use_atackk = true
 
 func endBoss() -> void:
 	$AnimatedSprite2D.play_backyard("default")
@@ -71,11 +69,8 @@ func openCircle(delta) -> void:
 		var bala = bala_scene.instantiate()
 		bala.position = self.position
 		get_parent().add_child(bala)
-
 		bala.position = self.position
 		bala.direct = direcao
 
-#func take_damage():
-	#life -= 1
-	#if life <= 0:
-		#$StateManager.force_change_state("DyingState")
+func take_damage():
+	get_parent().bossLife -= 5

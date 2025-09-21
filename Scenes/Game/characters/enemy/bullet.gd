@@ -16,4 +16,5 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player:
 		if body.has_method("take_damage"):
 			body.take_damage()
+			queue_free()
 	pass # Replace with function body.
