@@ -89,10 +89,15 @@ texture = ExtResource("6_42rbx")
 [node name="StateManager" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("3_42rbx")]
 initial_state = NodePath("StateMove")
 
-[node name="StateMove" type="Node2D" parent="StateManager" node_paths=PackedStringArray("player", "fov")]
+[node name="StateMove" type="Node2D" parent="StateManager" node_paths=PackedStringArray("player", "fov", "origin_bullet")]
 script = ExtResource("4_awq5b")
 player = NodePath("../..")
 fov = NodePath("../../FOV")
+origin_bullet = NodePath("Marker2D")
+fire_rate = 1.0
+
+[node name="Marker2D" type="Marker2D" parent="StateManager/StateMove"]
+position = Vector2(21, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
@@ -172,10 +177,10 @@ material = SubResource("CanvasItemMaterial_42rbx")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -789.0
-offset_top = -585.0
-offset_right = 980.0
-offset_bottom = 543.0
+offset_left = -755.0
+offset_top = -583.0
+offset_right = 1014.0
+offset_bottom = 545.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
