@@ -1614,6 +1614,7 @@ scale = Vector2(5, 5)
 [node name="Boss3" parent="." instance=ExtResource("6_dc8pd")]
 position = Vector2(-224, 51)
 scale = Vector2(5, 5)
+actvate = false
 
 [node name="Boss" parent="." instance=ExtResource("6_dc8pd")]
 position = Vector2(258, -111)

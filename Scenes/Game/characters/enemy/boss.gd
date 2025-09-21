@@ -74,5 +74,3 @@ func openCircle(delta) -> void:
 
 func take_damage():
 	get_parent().bossLife -= 5
-	print("chegou aqui " )
-	
