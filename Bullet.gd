@@ -15,9 +15,10 @@ func setup(dir: Vector2, start_pos: Vector2):
 	direction = dir.normalized()
 	global_position = start_pos
 	rotation = direction.angle()
+	show()
 
 func _physics_process(delta: float) -> void:
-	show()
+	
 	velocity = direction * speed
 	move_and_slide()
 

@@ -17,9 +17,6 @@ func Update(_delta:float):
 		pai.change_direction()
 		pai.timer = 0.0
 	
-	print(pai.direction)
-	print(pai.speed)
-	
 	pai.velocity = pai.direction * pai.speed
 	pai.move_and_slide()
 	pass
