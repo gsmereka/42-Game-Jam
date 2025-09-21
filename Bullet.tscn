@@ -22,6 +22,10 @@ animations = [{
 }]
 
 [node name="Bullet" type="CharacterBody2D"]
+collision_layer = 0
+motion_mode = 1
+platform_on_leave = 2
+platform_floor_layers = 4294967040
 script = ExtResource("1_4s4u5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -1,28 +1,35 @@
-[gd_scene load_steps=20 format=3 uid="uid://bffcrsi3nfqqb"]
+[gd_scene load_steps=21 format=3 uid="uid://bffcrsi3nfqqb"]
 
 [ext_resource type="Script" uid="uid://bpgw1tdp35qy7" path="res://Scenes/Game/characters/Player/player.gd" id="1_hpoch"]
 [ext_resource type="PackedScene" uid="uid://c1diffaf2650k" path="res://Scenes/StateMachine/state_manager.tscn" id="3_42rbx"]
 [ext_resource type="Script" uid="uid://cr2u3xjfuoink" path="res://Scenes/Game/characters/state_move.gd" id="4_awq5b"]
-[ext_resource type="Texture2D" uid="uid://d20b5ximn260m" path="res://Assets/Utils/cw.png" id="5_42rbx"]
+[ext_resource type="Texture2D" uid="uid://do6w3tkcs1qs3" path="res://Assets/player/prota-idle.png" id="5_awq5b"]
 [ext_resource type="Texture2D" uid="uid://lw0uoa0jwwwu" path="res://Assets/player/Sprite-0002.png" id="6_42rbx"]
-[ext_resource type="Texture2D" uid="uid://c8h1c6jc3gp4x" path="res://Assets/Utils/light.png" id="6_awq5b"]
 [ext_resource type="Texture2D" uid="uid://qkgslf00aryi" path="res://Assets/ui/lifebar.png" id="7_e3wm0"]
 [ext_resource type="Script" uid="uid://k620u80y7j7n" path="res://Scenes/Game/characters/Player/animated_sprite_2d.gd" id="8_14ubd"]
+[ext_resource type="Shader" uid="uid://b06jjgo2yit1a" path="res://Scenes/Shaders/blackandwhite.gdshader" id="8_e3wm0"]
+[ext_resource type="FontFile" uid="uid://ogggsxi21ib1" path="res://Assets/Fonts/karma_2/Karma Future.otf" id="8_i3msf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_42rbx"]
 radius = 9.0
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ipuyi"]
-closed = false
-polygon = PackedVector2Array(0, 0, 1000, 0)
+[sub_resource type="GDScript" id="GDScript_e3wm0"]
+script/source = "extends State
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_67hjq"]
-closed = false
-polygon = PackedVector2Array(0, -5, 0, 5)
+@export var player : Player
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_42rbx"]
-blend_mode = 2
-light_mode = 2
+func Enter():
+	$\"../../Sprite\".hide()
+	$\"../../TelaDeMorte\".show()
+	$\"../../DeathPose\".show()
+	await get_tree().create_timer(1).timeout
+	SceneLoader.load_scene(\"res://Scenes/UI/Menu/menu.tscn\", 0)
+
+
+func Physics_Update(delta):
+	pass
+		# Atira com espaço
+"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_14ubd"]
 atlas = ExtResource("7_e3wm0")
@@ -74,117 +81,55 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="LabelSettings" id="LabelSettings_fmfgu"]
+font = ExtResource("8_i3msf")
+font_size = 128
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_14ubd"]
+shader = ExtResource("8_e3wm0")
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_hpoch")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_42rbx")
+[node name="DeathPose" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1, 0)
+rotation = -1.5708
+texture = ExtResource("5_awq5b")
+hframes = 2
 
-[node name="Sprite-0002" type="Sprite2D" parent="CollisionShape2D"]
+[node name="Sprite" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="Sprite"]
+position = Vector2(21, 0)
+
+[node name="Sprite-0002" type="Sprite2D" parent="Sprite"]
 show_behind_parent = true
 position = Vector2(3, 0)
 rotation = 1.5708
 texture = ExtResource("6_42rbx")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_42rbx")
+
 [node name="StateManager" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("3_42rbx")]
 initial_state = NodePath("StateMove")
 
-[node name="StateMove" type="Node2D" parent="StateManager" node_paths=PackedStringArray("player", "fov", "origin_bullet")]
+[node name="StateMove" type="Node2D" parent="StateManager" node_paths=PackedStringArray("player", "origin_bullet")]
 script = ExtResource("4_awq5b")
 player = NodePath("../..")
-fov = NodePath("../../FOV")
 origin_bullet = NodePath("Marker2D")
 fire_rate = 1.0
 
 [node name="Marker2D" type="Marker2D" parent="StateManager/StateMove"]
 position = Vector2(21, 0)
 
+[node name="DyingState" type="Node2D" parent="StateManager" node_paths=PackedStringArray("player")]
+script = SubResource("GDScript_e3wm0")
+player = NodePath("../..")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
-
-[node name="FOV" type="Node2D" parent="."]
-position = Vector2(-2, 0)
-
-[node name="small_l" type="PointLight2D" parent="FOV"]
-position = Vector2(-5, 0)
-blend_mode = 2
-range_item_cull_mask = 8
-shadow_enabled = true
-shadow_item_cull_mask = 8
-texture = ExtResource("5_42rbx")
-offset = Vector2(10, 0)
-texture_scale = 0.15
-
-[node name="small_l2" type="PointLight2D" parent="FOV"]
-position = Vector2(-5, 0)
-blend_mode = 2
-range_item_cull_mask = 8
-shadow_enabled = true
-shadow_item_cull_mask = 8
-texture = ExtResource("6_awq5b")
-offset = Vector2(10, 0)
-texture_scale = 1.5
-
-[node name="big_l" type="PointLight2D" parent="FOV"]
-light_mask = 3
-visibility_layer = 3
-position = Vector2(5, 0)
-blend_mode = 2
-range_item_cull_mask = 8
-shadow_enabled = true
-shadow_item_cull_mask = 8
-texture = ExtResource("5_42rbx")
-texture_scale = 3.0
-
-[node name="left" type="LightOccluder2D" parent="FOV"]
-position = Vector2(0, -5)
-rotation = -0.785398
-occluder = SubResource("OccluderPolygon2D_ipuyi")
-occluder_light_mask = 8
-
-[node name="right" type="LightOccluder2D" parent="FOV"]
-position = Vector2(0, 5)
-rotation = 0.785398
-occluder = SubResource("OccluderPolygon2D_ipuyi")
-occluder_light_mask = 8
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="FOV"]
-occluder = SubResource("OccluderPolygon2D_67hjq")
-occluder_light_mask = 8
-
-[node name="Shadows" type="CanvasGroup" parent="."]
-self_modulate = Color(1, 1, 1, 0.290196)
-z_index = 2
-
-[node name="Shadow" type="ColorRect" parent="Shadows"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -789.0
-offset_top = -585.0
-offset_right = 980.0
-offset_bottom = 543.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-color = Color(0, 0, 0, 1)
-
-[node name="Mask" type="ColorRect" parent="Shadows"]
-light_mask = 8
-visibility_layer = 8
-material = SubResource("CanvasItemMaterial_42rbx")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -755.0
-offset_top = -583.0
-offset_right = 1014.0
-offset_bottom = 545.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -193,3 +138,29 @@ position = Vector2(96, 30)
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_0otuc")
 script = ExtResource("8_14ubd")
+
+[node name="TelaDeMorte" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Label" type="Label" parent="TelaDeMorte"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -249.5
+offset_top = -269.0
+offset_right = 249.5
+offset_bottom = -115.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Faleceu"
+label_settings = SubResource("LabelSettings_fmfgu")
+
+[node name="ColorRect" type="ColorRect" parent="TelaDeMorte"]
+material = SubResource("ShaderMaterial_14ubd")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

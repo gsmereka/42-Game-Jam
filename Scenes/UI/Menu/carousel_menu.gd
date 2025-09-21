@@ -9,7 +9,7 @@ func _ready() -> void:
 @onready var prev_node = $TextureRect3
 
 func _process(delta: float) -> void:
-	position.x -= 300 * delta
+	position.x -= ($"..".vel * delta)
 	var temp_node
 	if current_node.global_position.x < 0:
 		prev_node.global_position.x = next_node.global_position.x + 1920

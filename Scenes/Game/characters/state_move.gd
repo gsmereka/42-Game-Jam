@@ -1,7 +1,6 @@
 extends State
 
 @export var player : Player
-@export var fov : Node2D
 @export var origin_bullet : Marker2D
 var can_shoot = true
 @export var fire_rate = 0.0
@@ -17,6 +16,7 @@ func Physics_Update(delta):
 			
 		move(delta)
 		player.look_at(get_global_mouse_position())
+		
 
 		# Atira com espaço
 
@@ -24,11 +24,12 @@ func shoot():
 	can_shoot = false
 
 	var bullet = bullet_scene.instantiate()
+	player.get_parent().add_child(bullet)
 
 	# Direção = da arma até o mouse
 	var dir = (get_global_mouse_position() - origin_bullet.global_position).normalized()
 	bullet.setup(dir, origin_bullet.global_position)
-	get_tree().current_scene.add_child(bullet)
+	
 
 	# Cooldown
 	await get_tree().create_timer(fire_rate).timeout
