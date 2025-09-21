@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dwwf2caitbsdd"]
+[gd_scene load_steps=17 format=3 uid="uid://dwwf2caitbsdd"]
 
 [ext_resource type="Texture2D" uid="uid://b06adf5r3s4cd" path="res://icon.svg" id="1_3gvst"]
 [ext_resource type="Script" uid="uid://ccciyjiwyf633" path="res://sofia/Enemy.gd" id="1_55jtl"]
@@ -11,6 +11,53 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_55jtl"]
 size = Vector2(50, 54)
+
+[sub_resource type="GDScript" id="GDScript_s31rl"]
+script/source = "extends State
+@export var pai : CharacterBody2D
+
+func Enter():
+	pass
+	
+func Update(_delta:float):
+	if pai.target:
+		shoot()
+	pass
+
+var bul = preload(\"res://Scenes/Game/characters/enemy/bullet.tscn\")
+var can_shoot = true
+
+@export var color : Color
+func shoot():
+	if not can_shoot:
+		return
+	can_shoot = false
+	
+	var direct = (pai.target.global_position - pai.global_position).normalized()
+	var bule = bul.instantiate()
+	bule.direct = direct
+	bule.global_position = pai.global_position
+	bule.moveSpeed = 230
+	bule.modulate = color
+	pai.get_parent().add_child(bule)
+	
+	await get_tree().create_timer(1).timeout
+	can_shoot = true
+
+func Physics_Update(_delta:float):
+	pass
+	
+func Exit():
+	pass
+	
+
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if !body is Player:
+		return
+	get_parent().change_state(self, \"MoveState\")
+	pass # Replace with function body.
+"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fdex3"]
 atlas = ExtResource("6_726of")
@@ -48,6 +95,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_s31rl"]
+radius = 254.608
+
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 9
 collision_mask = 9
@@ -69,8 +119,14 @@ initial_state = NodePath("MoveState")
 script = ExtResource("4_prj20")
 pai = NodePath("../..")
 
-[node name="FreeeState" type="Node2D" parent="StateManager"]
+[node name="FreeeState" type="Node2D" parent="StateManager" node_paths=PackedStringArray("pai")]
 script = ExtResource("5_0aeik")
+pai = NodePath("../..")
+
+[node name="AimPlayer" type="Node2D" parent="StateManager" node_paths=PackedStringArray("pai")]
+script = SubResource("GDScript_s31rl")
+pai = NodePath("../..")
+color = Color(0, 0.988235, 0, 0.537255)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fdex3")
@@ -82,3 +138,11 @@ volume_db = -13.595
 [node name="HitEnemy" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_s31rl")
 volume_db = 6.327
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_s31rl")
+
+[connection signal="body_entered" from="Area2D" to="StateManager/MoveState" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="StateManager/AimPlayer" method="_on_area_2d_body_exited"]

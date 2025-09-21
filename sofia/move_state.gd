@@ -5,8 +5,6 @@ func Enter():
 	pass
 	
 func Update(_delta:float):
-	if Input.is_action_just_pressed("ui_accept"):
-		get_parent().change_state(self, "FreeeState")
 	
 	pai.timer += _delta
 	
@@ -26,4 +24,11 @@ func Physics_Update(_delta:float):
 	
 func Exit():
 	pass
-	
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if !body is Player:
+		return
+	pai.target = body
+	get_parent().change_state(self, "AimPlayer")
+	pass # Replace with function body.
