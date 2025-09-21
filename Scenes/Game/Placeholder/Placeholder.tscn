@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bqj85e0r6dsgb" path="res://Scenes/Game/objects/wall.tscn" id="8_5gvfw"]
 [ext_resource type="Texture2D" uid="uid://6cdj5gainca4" path="res://Assets/Enemy/enemyGlitch.png" id="9_2pcka"]
 [ext_resource type="PackedScene" uid="uid://c1bjugus23qgr" path="res://Scenes/Game/characters/enemy/one.tscn" id="9_avkug"]
+[ext_resource type="Texture2D" uid="uid://chr5jrgv7cr21" path="res://Assets/Objects/pegadas vermelhas.png" id="10_avkug"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5gvfw"]
 
@@ -98,3 +99,8 @@ scale = Vector2(4, 4)
 texture = ExtResource("9_2pcka")
 hframes = 3
 vframes = 4
+
+[node name="PegadasVermelhas" type="Sprite2D" parent="."]
+position = Vector2(357, 201)
+rotation = 1.30963
+texture = ExtResource("10_avkug")

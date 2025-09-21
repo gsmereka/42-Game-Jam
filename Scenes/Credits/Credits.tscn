@@ -18,58 +18,42 @@ size_flags_vertical = 4
 color = Color(0, 0, 0, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ColorRect"]
-layout_mode = 0
-offset_left = 489.0
-offset_top = 84.0
-offset_right = 644.0
-offset_bottom = 124.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.0
+offset_top = -173.5
+offset_right = 92.0
+offset_bottom = 173.5
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/ColorRect/VBoxContainer"]
 layout_mode = 2
-text = "Time do Balacobaco"
+theme_override_font_sizes/font_size = 36
+text = "Muito Obrigado por Jogar!
 
-[node name="Label2" type="Label" parent="CanvasLayer/ColorRect/VBoxContainer"]
-layout_mode = 2
-text = "Time do Balacobaco"
+Jogo feito por:
 
-[node name="Label3" type="Label" parent="CanvasLayer/ColorRect/VBoxContainer"]
-layout_mode = 2
-text = "Time do Balacobaco"
+Jonnas
+Sofia Bastos
+Thiago
+Gabriel Smereka
+Luiz AMS
 
-[node name="Label4" type="Label" parent="CanvasLayer/ColorRect/VBoxContainer"]
-layout_mode = 2
-text = "Time do Balacobaco"
-
-[node name="Label5" type="Label" parent="CanvasLayer/ColorRect/VBoxContainer"]
-layout_mode = 2
-text = "Time do Balacobaco"
-
-[node name="Label6" type="Label" parent="CanvasLayer/ColorRect/VBoxContainer"]
-layout_mode = 2
-text = "Time do Balacobaco"
-
-[node name="Label7" type="Label" parent="CanvasLayer/ColorRect/VBoxContainer"]
-layout_mode = 2
-text = "Time do Balacobaco"
-
-[node name="Label8" type="Label" parent="CanvasLayer/ColorRect/VBoxContainer"]
-layout_mode = 2
-text = "Time do Balacobaco"
-
-[node name="Label9" type="Label" parent="CanvasLayer/ColorRect/VBoxContainer"]
-layout_mode = 2
-text = "Time do Balacobaco"
-
-[node name="Label10" type="Label" parent="CanvasLayer/ColorRect/VBoxContainer"]
-layout_mode = 2
-text = "Time do Balacobaco"
-
-[node name="Label11" type="Label" parent="CanvasLayer/ColorRect/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label12" type="Label" parent="CanvasLayer/ColorRect/VBoxContainer"]
-layout_mode = 2
+Para a 
+Primeira Gamejam 42SP"
+horizontal_alignment = 1
 
 [node name="Label13" type="Label" parent="CanvasLayer/ColorRect/VBoxContainer"]
 layout_mode = 2
-text = "Pressione Esc pra voltar"
+theme_override_font_sizes/font_size = 36
+text = "
+
+
+
+Pressione Esc pra voltar"
+horizontal_alignment = 1
