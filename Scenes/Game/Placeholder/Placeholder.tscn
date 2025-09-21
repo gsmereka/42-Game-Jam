@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bffcrsi3nfqqb" path="res://Scenes/Game/characters/Player/player.tscn" id="8_2pcka"]
 [ext_resource type="PackedScene" uid="uid://bqj85e0r6dsgb" path="res://Scenes/Game/objects/wall.tscn" id="8_5gvfw"]
 [ext_resource type="Texture2D" uid="uid://6cdj5gainca4" path="res://Assets/Enemy/enemyGlitch.png" id="9_2pcka"]
+[ext_resource type="PackedScene" uid="uid://c1bjugus23qgr" path="res://Scenes/Game/characters/enemy/one.tscn" id="9_avkug"]
 [ext_resource type="Texture2D" uid="uid://chr5jrgv7cr21" path="res://Assets/Objects/pegadas vermelhas.png" id="10_avkug"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5gvfw"]
@@ -77,6 +78,9 @@ position = Vector2(460, 301)
 
 [node name="Wall8" parent="Node2D" instance=ExtResource("8_5gvfw")]
 position = Vector2(420, 357)
+
+[node name="One" parent="Node2D" instance=ExtResource("9_avkug")]
+position = Vector2(338, 274)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

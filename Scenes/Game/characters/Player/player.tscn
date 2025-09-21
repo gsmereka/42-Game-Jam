@@ -1,11 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://bffcrsi3nfqqb"]
+[gd_scene load_steps=20 format=3 uid="uid://bffcrsi3nfqqb"]
 
 [ext_resource type="Script" uid="uid://bpgw1tdp35qy7" path="res://Scenes/Game/characters/Player/player.gd" id="1_hpoch"]
 [ext_resource type="PackedScene" uid="uid://c1diffaf2650k" path="res://Scenes/StateMachine/state_manager.tscn" id="3_42rbx"]
-[ext_resource type="Script" uid="uid://cr2u3xjfuoink" path="res://Scenes/Game/characters/state_move.gd" id="4_awq5b"]
+[ext_resource type="Script" path="res://Scenes/Game/characters/state_move.gd" id="4_awq5b"]
 [ext_resource type="Texture2D" uid="uid://d20b5ximn260m" path="res://Assets/Utils/cw.png" id="5_42rbx"]
 [ext_resource type="Texture2D" uid="uid://lw0uoa0jwwwu" path="res://Assets/player/Sprite-0002.png" id="6_42rbx"]
 [ext_resource type="Texture2D" uid="uid://c8h1c6jc3gp4x" path="res://Assets/Utils/light.png" id="6_awq5b"]
+[ext_resource type="Texture2D" uid="uid://qkgslf00aryi" path="res://Assets/ui/lifebar.png" id="7_e3wm0"]
+[ext_resource type="Script" uid="uid://k620u80y7j7n" path="res://Scenes/Game/characters/Player/animated_sprite_2d.gd" id="8_14ubd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_42rbx"]
 radius = 9.0
@@ -22,6 +24,56 @@ polygon = PackedVector2Array(0, -5, 0, 5)
 blend_mode = 2
 light_mode = 2
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_14ubd"]
+atlas = ExtResource("7_e3wm0")
+region = Rect2(0, 0, 34, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3msf"]
+atlas = ExtResource("7_e3wm0")
+region = Rect2(0, 7, 34, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmfgu"]
+atlas = ExtResource("7_e3wm0")
+region = Rect2(0, 14, 34, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8rvb4"]
+atlas = ExtResource("7_e3wm0")
+region = Rect2(0, 21, 34, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5chic"]
+atlas = ExtResource("7_e3wm0")
+region = Rect2(0, 28, 34, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5yj3n"]
+atlas = ExtResource("7_e3wm0")
+region = Rect2(0, 35, 34, 7)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0otuc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14ubd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3msf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fmfgu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8rvb4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5chic")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5yj3n")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_hpoch")
 
@@ -37,12 +89,18 @@ texture = ExtResource("6_42rbx")
 [node name="StateManager" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("3_42rbx")]
 initial_state = NodePath("StateMove")
 
-[node name="StateMove" type="Node2D" parent="StateManager" node_paths=PackedStringArray("player", "fov")]
+[node name="StateMove" type="Node2D" parent="StateManager" node_paths=PackedStringArray("player", "fov", "origin_bullet")]
 script = ExtResource("4_awq5b")
 player = NodePath("../..")
 fov = NodePath("../../FOV")
+origin_bullet = NodePath("Marker2D")
+fire_rate = 1.0
+
+[node name="Marker2D" type="Marker2D" parent="StateManager/StateMove"]
+position = Vector2(21, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
 
 [node name="FOV" type="Node2D" parent="."]
 position = Vector2(-2, 0)
@@ -119,11 +177,19 @@ material = SubResource("CanvasItemMaterial_42rbx")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -789.0
-offset_top = -585.0
-offset_right = 980.0
-offset_bottom = 543.0
+offset_left = -755.0
+offset_top = -583.0
+offset_right = 1014.0
+offset_bottom = 545.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer"]
+position = Vector2(96, 30)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_0otuc")
+script = ExtResource("8_14ubd")

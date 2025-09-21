@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://beg7fmfrptve0"]
+
+[sub_resource type="GDScript" id="GDScript_ji1mx"]
+script/source = "extends Node2D
+
+@onready var bala_scene = preload(\"res://Scenes/Game/characters/enemy/bullet.tscn\")
+
+var quantidade = 12  # número de balas
+var raio_inicial = 50
+var raio_crescente = 20  # quanto o raio cresce por segundo
+var tempo_total = 2.0  # tempo que o círculo vai crescer
+
+var timer = 0.0
+
+func _process(delta):
+	timer += delta
+	var raio_atual = raio_inicial + (raio_crescente * timer)
+
+	if timer > tempo_total:
+		set_process(false)
+		return
+
+	for i in range(quantidade):
+		var angulo = TAU * i / quantidade  # TAU = 2π
+		var direcao = Vector2(cos(angulo), sin(angulo)).normalized()
+
+		var bala = bala_scene.instantiate()
+		get_parent().add_child(bala)
+
+		bala.position = global_position + direcao * raio_atual
+		bala.direct = direcao
+"
+
+[node name="CircleShot" type="Node2D"]
+script = SubResource("GDScript_ji1mx")

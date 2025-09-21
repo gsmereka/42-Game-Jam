@@ -2,10 +2,37 @@ extends State
 
 @export var player : Player
 @export var fov : Node2D
+@export var origin_bullet : Marker2D
+var can_shoot = true
+@export var fire_rate = 0.0
+@export var bullet_scene = preload("res://Bullet.tscn")
+
+func Enter():
+	await get_tree().create_timer(1).timeout
+	can_shoot = true
 
 func Physics_Update(delta):
+		if Input.is_action_pressed("Click") and can_shoot:
+			shoot()
+			
 		move(delta)
 		player.look_at(get_global_mouse_position())
+
+		# Atira com espaço
+
+func shoot():
+	can_shoot = false
+
+	var bullet = bullet_scene.instantiate()
+
+	# Direção = da arma até o mouse
+	var dir = (get_global_mouse_position() - origin_bullet.global_position).normalized()
+	bullet.setup(dir, origin_bullet.global_position)
+	get_tree().current_scene.add_child(bullet)
+
+	# Cooldown
+	await get_tree().create_timer(fire_rate).timeout
+	can_shoot = true
 
 func manageSprites(vector: Vector2) -> void:
 	pass
