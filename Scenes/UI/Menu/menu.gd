@@ -14,7 +14,7 @@ func _on_start_pressed() -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Esc"):
-		SceneLoader.load_scene(main_scene)
+		SceneLoader.load_scene(main_scene, 0)
 
 func _on_config_pressed() -> void:
 	if to_play:

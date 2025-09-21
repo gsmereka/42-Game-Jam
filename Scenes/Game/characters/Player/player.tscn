@@ -1,11 +1,14 @@
-[gd_scene load_steps=16 format=3 uid="uid://bffcrsi3nfqqb"]
+[gd_scene load_steps=21 format=3 uid="uid://bffcrsi3nfqqb"]
 
 [ext_resource type="Script" uid="uid://bpgw1tdp35qy7" path="res://Scenes/Game/characters/Player/player.gd" id="1_hpoch"]
 [ext_resource type="PackedScene" uid="uid://c1diffaf2650k" path="res://Scenes/StateMachine/state_manager.tscn" id="3_42rbx"]
 [ext_resource type="Script" uid="uid://cr2u3xjfuoink" path="res://Scenes/Game/characters/state_move.gd" id="4_awq5b"]
+[ext_resource type="Texture2D" uid="uid://do6w3tkcs1qs3" path="res://Assets/player/prota-idle.png" id="5_awq5b"]
 [ext_resource type="Texture2D" uid="uid://lw0uoa0jwwwu" path="res://Assets/player/Sprite-0002.png" id="6_42rbx"]
 [ext_resource type="Texture2D" uid="uid://qkgslf00aryi" path="res://Assets/ui/lifebar.png" id="7_e3wm0"]
 [ext_resource type="Script" uid="uid://k620u80y7j7n" path="res://Scenes/Game/characters/Player/animated_sprite_2d.gd" id="8_14ubd"]
+[ext_resource type="Shader" uid="uid://b06jjgo2yit1a" path="res://Scenes/Shaders/blackandwhite.gdshader" id="8_e3wm0"]
+[ext_resource type="FontFile" uid="uid://ogggsxi21ib1" path="res://Assets/Fonts/karma_2/Karma Future.otf" id="8_i3msf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_42rbx"]
 radius = 9.0
@@ -18,6 +21,7 @@ script/source = "extends State
 func Enter():
 	$\"../../Sprite\".hide()
 	$\"../../TelaDeMorte\".show()
+	$\"../../DeathPose\".show()
 	await get_tree().create_timer(1).timeout
 	SceneLoader.load_scene(\"res://Scenes/UI/Menu/menu.tscn\", 0)
 
@@ -77,8 +81,22 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="LabelSettings" id="LabelSettings_fmfgu"]
+font = ExtResource("8_i3msf")
+font_size = 128
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_14ubd"]
+shader = ExtResource("8_e3wm0")
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_hpoch")
+
+[node name="DeathPose" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1, 0)
+rotation = -1.5708
+texture = ExtResource("5_awq5b")
+hframes = 2
 
 [node name="Sprite" type="Node2D" parent="."]
 
@@ -122,3 +140,27 @@ sprite_frames = SubResource("SpriteFrames_0otuc")
 script = ExtResource("8_14ubd")
 
 [node name="TelaDeMorte" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Label" type="Label" parent="TelaDeMorte"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -249.5
+offset_top = -269.0
+offset_right = 249.5
+offset_bottom = -115.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Faleceu"
+label_settings = SubResource("LabelSettings_fmfgu")
+
+[node name="ColorRect" type="ColorRect" parent="TelaDeMorte"]
+material = SubResource("ShaderMaterial_14ubd")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
