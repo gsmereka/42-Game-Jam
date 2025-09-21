@@ -2,7 +2,8 @@ extends CharacterBody2D
 @onready var bala_scene = preload("res://Scenes/Game/characters/enemy/bullet.tscn")
 var actvated: bool = false
 var	use_atackk = false
-func _physics_process(delta: float) -> void:
+
+func _process(delta: float) -> void:
 	if (!get_parent().startBossBattle): return;
 	if (!actvated):
 		startBoss()
@@ -14,10 +15,9 @@ func _physics_process(delta: float) -> void:
 		recuperar_ataque_depois_de_delay()
 		#get_in()
 		launch_circular_burst_towards_player(self.get_parent().get_node("Player").position)
-
-func _process(delta: float) -> void:
 	if get_parent().bossLife <= 0:
-		queue_free()
+			queue_free()
+	
 
 func startBoss() ->void:
 	$AnimatedSprite2D.frame = 0;
