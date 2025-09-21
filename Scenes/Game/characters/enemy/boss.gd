@@ -35,7 +35,7 @@ func recuperar_ataque_depois_de_delay():
 	use_atackk = true
 	#get_out()
 func launch_circular_burst_towards_player(player_position: Vector2) -> void:
-	var quantidade = 16  # Número de balas no círculo
+	var quantidade = 8  # Número de balas no círculo
 	var raio = 32.0      # Distância do centro até as balas
 
 	# Direção geral: da origem (inimigo) até o player
@@ -51,10 +51,10 @@ func launch_circular_burst_towards_player(player_position: Vector2) -> void:
 		get_parent().add_child(bala)
 
 func openCircle(delta) -> void:
-	var quantidade = 64  # número de balas
-	var raio_inicial = 50
+	var quantidade = 16  # número de balas
+	var raio_inicial = 70
 	var raio_crescente = 20  # quanto o raio cresce por segundo
-	var tempo_total = 2.0  # tempo que o círculo vai crescer
+	var tempo_total = 4.0  # tempo que o círculo vai crescer
 
 	var timer = 0.0
 	timer += delta
@@ -74,3 +74,8 @@ func openCircle(delta) -> void:
 
 		bala.position = self.position
 		bala.direct = direcao
+
+func take_damage():
+	life -= 1
+	if life <= 0:
+		$StateManager.force_change_state("DyingState")

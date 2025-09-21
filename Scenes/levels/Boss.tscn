@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://boiah1xd03v0w"]
+[gd_scene load_steps=15 format=4 uid="uid://boiah1xd03v0w"]
 
 [ext_resource type="Texture2D" uid="uid://xdsj26t38o5l" path="res://Assets/Utils/Space #Sponsored , #SPONSORED, #art#Pixel#style#Ai.jpeg" id="1_g1wwi"]
 [ext_resource type="Script" uid="uid://c4yfsn8cj0act" path="res://Scenes/levels/boss.gd" id="1_s6dab"]
@@ -1575,9 +1575,13 @@ margins = Vector2i(2, 0)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_31bl1")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_s6dab"]
+radius = 820.731
+
 [node name="FisrtAttempt" type="Node2D"]
 position = Vector2(28, -188)
 script = ExtResource("1_s6dab")
+startBossBattle = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -1596,17 +1600,19 @@ tile_set = SubResource("TileSet_ou56q")
 [node name="Boss" parent="." instance=ExtResource("6_dc8pd")]
 position = Vector2(258, -111)
 scale = Vector2(5, 5)
+actvate = true
 
 [node name="Boss2" parent="." instance=ExtResource("6_dc8pd")]
 position = Vector2(847, 86)
 scale = Vector2(5, 5)
+actvate = true
 
 [node name="Boss3" parent="." instance=ExtResource("6_dc8pd")]
 position = Vector2(-224, 51)
 scale = Vector2(5, 5)
 
 [node name="Player" parent="." instance=ExtResource("4_s6dab")]
-position = Vector2(324, 1168)
+position = Vector2(235, 490)
 rotation = -1.5193
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -1621,3 +1627,13 @@ position = Vector2(-880, 3348)
 
 [node name="Enemy3" parent="." instance=ExtResource("2_dc8pd")]
 position = Vector2(-649, 3410)
+
+[node name="Hpdoboss" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(238, 38)
+rotation = -0.340033
+shape = SubResource("CircleShape2D_s6dab")
