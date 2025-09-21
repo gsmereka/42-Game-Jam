@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dsqdj3rnksu66"]
+[gd_scene load_steps=22 format=3 uid="uid://dsqdj3rnksu66"]
 
 [ext_resource type="Script" uid="uid://n6ntknr6citb" path="res://Scenes/Game/Placeholder/placeholder.gd" id="1_dnif1"]
 [ext_resource type="AudioStream" uid="uid://clofo7hgx4sfj" path="res://Assets/Music/Castle_Music.mp3" id="2_mk1xm"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://67s0jw6qy52" path="res://Scenes/Game/characters/enemy/character_body_2d.gd" id="9_upuv6"]
 [ext_resource type="Texture2D" uid="uid://bdi0bcdlj6g81" path="res://Assets/Enemy/inimigo-rascunho-sheet.png" id="10_70v8g"]
 [ext_resource type="Texture2D" uid="uid://chr5jrgv7cr21" path="res://Assets/Objects/pegadas vermelhas.png" id="10_avkug"]
+[ext_resource type="PackedScene" uid="uid://dwwf2caitbsdd" path="res://sofia/Enemy.tscn" id="11_70v8g"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5gvfw"]
 
@@ -132,6 +133,11 @@ frame_progress = 0.0320678
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/One/CharacterBody2D"]
 shape = SubResource("RectangleShape2D_w3a34")
+
+[node name="Enemy" parent="Node2D/One" instance=ExtResource("11_70v8g")]
+position = Vector2(-117.5, 20.5)
+speed = 100.0
+direction_change_time = 10.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

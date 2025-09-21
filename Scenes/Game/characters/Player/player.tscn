@@ -1,14 +1,16 @@
-[gd_scene load_steps=21 format=3 uid="uid://bffcrsi3nfqqb"]
+[gd_scene load_steps=23 format=3 uid="uid://bffcrsi3nfqqb"]
 
 [ext_resource type="Script" uid="uid://bpgw1tdp35qy7" path="res://Scenes/Game/characters/Player/player.gd" id="1_hpoch"]
 [ext_resource type="PackedScene" uid="uid://c1diffaf2650k" path="res://Scenes/StateMachine/state_manager.tscn" id="3_42rbx"]
 [ext_resource type="Script" uid="uid://cr2u3xjfuoink" path="res://Scenes/Game/characters/state_move.gd" id="4_awq5b"]
 [ext_resource type="Texture2D" uid="uid://do6w3tkcs1qs3" path="res://Assets/player/prota-idle.png" id="5_awq5b"]
 [ext_resource type="Texture2D" uid="uid://lw0uoa0jwwwu" path="res://Assets/player/Sprite-0002.png" id="6_42rbx"]
+[ext_resource type="AudioStream" uid="uid://c5qyx41oc5lxq" path="res://Scenes/Game/characters/Player/single-gunshot-54-40780.mp3" id="6_fmfgu"]
 [ext_resource type="Texture2D" uid="uid://qkgslf00aryi" path="res://Assets/ui/lifebar.png" id="7_e3wm0"]
 [ext_resource type="Script" uid="uid://k620u80y7j7n" path="res://Scenes/Game/characters/Player/animated_sprite_2d.gd" id="8_14ubd"]
 [ext_resource type="Shader" uid="uid://b06jjgo2yit1a" path="res://Scenes/Shaders/blackandwhite.gdshader" id="8_e3wm0"]
 [ext_resource type="FontFile" uid="uid://ogggsxi21ib1" path="res://Assets/Fonts/karma_2/Karma Future.otf" id="8_i3msf"]
+[ext_resource type="AudioStream" uid="uid://bfsk03vou85mu" path="res://Scenes/Game/characters/Player/st3-footstep-sfx-323056.mp3" id="10_i3msf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_42rbx"]
 radius = 9.0
@@ -119,7 +121,7 @@ initial_state = NodePath("StateMove")
 script = ExtResource("4_awq5b")
 player = NodePath("../..")
 origin_bullet = NodePath("Marker2D")
-fire_rate = 1.0
+fire_rate = 0.5
 
 [node name="Marker2D" type="Marker2D" parent="StateManager/StateMove"]
 position = Vector2(21, 0)
@@ -130,6 +132,17 @@ player = NodePath("../..")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
+
+[node name="Walking" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_i3msf")
+parameters/looping = true
+
+[node name="ShootSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_fmfgu")
+volume_db = -11.886
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+current = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
