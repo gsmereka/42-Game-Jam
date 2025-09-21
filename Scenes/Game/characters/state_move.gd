@@ -13,6 +13,9 @@ func Enter():
 	can_shoot = true
 
 func Physics_Update(delta):
+		if player.is_dead:
+			return  # bloqueia movimento e tiro
+		
 		if Input.is_action_pressed("Click") and can_shoot:
 			shoot()
 			
