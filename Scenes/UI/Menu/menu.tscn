@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dl6nhc1603s8e"]
 
 [ext_resource type="Script" uid="uid://bchvnm11rvshb" path="res://Scenes/UI/Menu/menu.gd" id="1_vf0ft"]
-[ext_resource type="Script" uid="uid://b2tduj6h2x20s" path="res://Scenes/UI/Menu/carousel_menu.gd" id="2_5cpsf"]
+[ext_resource type="Script" path="res://Scenes/UI/Menu/carousel_menu.gd" id="2_5cpsf"]
 [ext_resource type="AudioStream" uid="uid://cxwuslxnx65cg" path="res://Assets/Music/Scott Joplin   The Easy Winners A Ragtime Two Step (1901.mp3" id="2_s3jnw"]
 [ext_resource type="PackedScene" uid="uid://i72f1mh03gxx" path="res://Scenes/UI/Menu/MenuBackground.tscn" id="3_7utnp"]
 [ext_resource type="Theme" uid="uid://cbyo6hgahchbx" path="res://Scenes/UI/Thema/menuThema.tres" id="4_7utnp"]

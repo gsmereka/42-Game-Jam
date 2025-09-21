@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dsqdj3rnksu66"]
+[gd_scene load_steps=14 format=3 uid="uid://dsqdj3rnksu66"]
 
 [ext_resource type="Script" uid="uid://n6ntknr6citb" path="res://Scenes/Game/Placeholder/placeholder.gd" id="1_dnif1"]
 [ext_resource type="AudioStream" uid="uid://clofo7hgx4sfj" path="res://Assets/Music/Castle_Music.mp3" id="2_mk1xm"]

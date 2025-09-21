@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bpgw1tdp35qy7" path="res://Scenes/Game/characters/Player/player.gd" id="1_hpoch"]
 [ext_resource type="PackedScene" uid="uid://c1diffaf2650k" path="res://Scenes/StateMachine/state_manager.tscn" id="3_42rbx"]
-[ext_resource type="Script" path="res://Scenes/Game/characters/state_move.gd" id="4_awq5b"]
+[ext_resource type="Script" uid="uid://cr2u3xjfuoink" path="res://Scenes/Game/characters/state_move.gd" id="4_awq5b"]
 [ext_resource type="Texture2D" uid="uid://d20b5ximn260m" path="res://Assets/Utils/cw.png" id="5_42rbx"]
 [ext_resource type="Texture2D" uid="uid://lw0uoa0jwwwu" path="res://Assets/player/Sprite-0002.png" id="6_42rbx"]
 [ext_resource type="Texture2D" uid="uid://c8h1c6jc3gp4x" path="res://Assets/Utils/light.png" id="6_awq5b"]
@@ -95,6 +95,7 @@ player = NodePath("../..")
 fov = NodePath("../../FOV")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
 
 [node name="FOV" type="Node2D" parent="."]
 position = Vector2(-2, 0)

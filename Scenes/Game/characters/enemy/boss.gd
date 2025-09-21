@@ -6,7 +6,7 @@ func _ready() -> void:
 
 var use_atackk = true
 
-func _physics_process(delta: float) -> void:
+ func _physics_process(delta: float) -> void:
 	if (use_atackk):
 		openCircle(delta)
 		use_atackk = false
@@ -17,7 +17,7 @@ func recuperar_ataque_depois_de_delay():
 	use_atackk = true
 
 func openCircle(delta) -> void:
-	var quantidade = 24  # número de balas
+	var quantidade = 64  # número de balas
 	var raio_inicial = 50
 	var raio_crescente = 20  # quanto o raio cresce por segundo
 	var tempo_total = 2.0  # tempo que o círculo vai crescer
@@ -38,5 +38,5 @@ func openCircle(delta) -> void:
 		bala.position = self.position
 		get_parent().add_child(bala)
 
-		bala.position = global_position + direcao * raio_atual
+		bala.position = self.position
 		bala.direct = direcao
