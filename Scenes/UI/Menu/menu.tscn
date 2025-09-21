@@ -1,14 +1,19 @@
-[gd_scene load_steps=9 format=3 uid="uid://dl6nhc1603s8e"]
+[gd_scene load_steps=14 format=3 uid="uid://dl6nhc1603s8e"]
 
 [ext_resource type="Script" uid="uid://bchvnm11rvshb" path="res://Scenes/UI/Menu/menu.gd" id="1_vf0ft"]
 [ext_resource type="Script" uid="uid://b2tduj6h2x20s" path="res://Scenes/UI/Menu/carousel_menu.gd" id="2_5cpsf"]
 [ext_resource type="AudioStream" uid="uid://cxwuslxnx65cg" path="res://Assets/Music/Scott Joplin   The Easy Winners A Ragtime Two Step (1901.mp3" id="2_s3jnw"]
 [ext_resource type="PackedScene" uid="uid://i72f1mh03gxx" path="res://Scenes/UI/Menu/MenuBackground.tscn" id="3_7utnp"]
 [ext_resource type="Theme" uid="uid://cbyo6hgahchbx" path="res://Scenes/UI/Thema/menuThema.tres" id="4_7utnp"]
+[ext_resource type="Texture2D" uid="uid://d20b5ximn260m" path="res://Assets/Utils/cw.png" id="6_5cpsf"]
+[ext_resource type="Texture2D" uid="uid://c8h1c6jc3gp4x" path="res://Assets/Utils/light.png" id="6_f4ncy"]
+[ext_resource type="Texture2D" uid="uid://dobf5owq610lm" path="res://Assets/gatinho_white_2_1-32.png" id="8_hvw7o"]
+[ext_resource type="FontFile" uid="uid://dx83sjys7wof2" path="res://Assets/Fonts/karma_2/Karma Suture.otf" id="9_8ixe1"]
+[ext_resource type="Texture2D" uid="uid://do6w3tkcs1qs3" path="res://Assets/player/prota-idle.png" id="10_oau8i"]
 
 [sub_resource type="Animation" id="Animation_7utnp"]
 resource_name = "Intro"
-length = 16.0
+length = 64.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -32,6 +37,66 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [300, 0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("City/nave:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(19.2333, 25, 45.6, 49.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1928, 980), Vector2(56, 1284), Vector2(56, 1284), Vector2(2328, 220)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("City/Cw3:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(25.6, 31.3, 38.6667, 44.1333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.623529), Color(1, 1, 1, 0.623529), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("City/GatinhoWhite21-32:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(31.1667, 38.0667, 38.3333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-112, 1944), Vector2(56, 1292), Vector2(-2e+14, 1944)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("City/Node2D:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 47.2667, 52.3333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("City/Prota-idle:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(52.3333, 60.7333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-216, 1996), Vector2(584, 956)]
 }
 
 [sub_resource type="Animation" id="Animation_5cpsf"]
@@ -59,6 +124,66 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [300]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("City/nave:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1928, 980)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("City/Cw3:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("City/GatinhoWhite21-32:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-112, 1944)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("City/Node2D:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("City/Prota-idle:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-216, 1996)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5cpsf"]
@@ -216,13 +341,67 @@ autoplay = true
 libraries = {
 &"": SubResource("AnimationLibrary_5cpsf")
 }
-autoplay = "Intro"
+speed_scale = 3.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 540)
 
+[node name="LabelPularIntro" type="Label" parent="Camera2D"]
+visible = false
+offset_left = -928.0
+offset_top = -500.0
+offset_right = -749.0
+offset_bottom = -477.0
+text = "Pressione Esc Pra Pular a Intro"
+
 [node name="City" type="Node2D" parent="."]
 position = Vector2(960, 540)
+
+[node name="Light" type="Sprite2D" parent="City"]
+position = Vector2(728, 6644)
+scale = Vector2(35.88, 37.32)
+texture = ExtResource("6_f4ncy")
+
+[node name="Cw3" type="Sprite2D" parent="City"]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(-576, 3652)
+rotation = 0.261799
+scale = Vector2(0.308112, 5.04214)
+texture = ExtResource("6_5cpsf")
+
+[node name="Prota-idle" type="Sprite2D" parent="City"]
+position = Vector2(-216, 1996)
+rotation = 0.261799
+texture = ExtResource("10_oau8i")
+hframes = 2
+
+[node name="Light5" type="Sprite2D" parent="City/Prota-idle"]
+self_modulate = Color(1, 0.632599, 0.459527, 0.505882)
+show_behind_parent = true
+position = Vector2(0, 8)
+scale = Vector2(0.24, 0.2)
+texture = ExtResource("6_f4ncy")
+
+[node name="Light2" type="Sprite2D" parent="City/Prota-idle"]
+self_modulate = Color(0.839216, 0.352941, 0, 1)
+show_behind_parent = true
+position = Vector2(0, 8)
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("6_f4ncy")
+
+[node name="Light3" type="Sprite2D" parent="City/Prota-idle"]
+self_modulate = Color(0.839216, 0.352941, 0, 1)
+show_behind_parent = true
+position = Vector2(0, 16)
+scale = Vector2(0.0800002, 0.0800004)
+texture = ExtResource("6_f4ncy")
+
+[node name="Light4" type="Sprite2D" parent="City/Prota-idle"]
+self_modulate = Color(0.839216, 0.352941, 0, 1)
+show_behind_parent = true
+position = Vector2(0, 24)
+scale = Vector2(0.0400001, 0.0800004)
+texture = ExtResource("6_f4ncy")
 
 [node name="Predios" type="Node2D" parent="City"]
 position = Vector2(-960, -540)
@@ -461,18 +640,72 @@ offset_bottom = 1620.0
 position = Vector2(456, 340)
 
 [node name="ColorRect" type="ColorRect" parent="City/Lights/tuple13"]
-offset_left = -589.0
-offset_top = 1608.0
-offset_right = -549.0
+offset_left = -584.0
+offset_top = 1576.0
+offset_right = -544.0
 offset_bottom = 1620.0
 
 [node name="ColorRect2" type="ColorRect" parent="City/Lights/tuple13"]
-offset_left = -696.0
-offset_top = 1608.0
-offset_right = -656.0
+offset_left = -688.0
+offset_top = 1576.0
+offset_right = -648.0
 offset_bottom = 1620.0
+
+[node name="GatinhoWhite21-32" type="Sprite2D" parent="City"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(-112, 1944)
+texture = ExtResource("8_hvw7o")
+
+[node name="Node2D" type="Node2D" parent="City"]
+
+[node name="ColorRect2" type="ColorRect" parent="City/Node2D"]
+offset_left = -181.0
+offset_top = 1711.0
+offset_right = 52.0
+offset_bottom = 1761.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="City/Node2D"]
+offset_left = -176.0
+offset_top = 1716.0
+offset_right = 48.0
+offset_bottom = 1756.0
+
+[node name="Label" type="Label" parent="City/Node2D/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -99.5
+offset_top = -20.0
+offset_right = 99.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_8ixe1")
+theme_override_font_sizes/font_size = 32
+text = "MEU GATO!???"
+
+[node name="nave" type="Node2D" parent="City"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(1928, 980)
+
+[node name="Cw" type="Sprite2D" parent="City/nave"]
+scale = Vector2(0.814815, 0.118519)
+texture = ExtResource("6_5cpsf")
+metadata/_edit_lock_ = true
+
+[node name="Cw2" type="Sprite2D" parent="City/nave"]
+position = Vector2(0, -40)
+scale = Vector2(0.325926, 0.177778)
+texture = ExtResource("6_5cpsf")
+metadata/_edit_lock_ = true
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Config" to="." method="_on_config_pressed"]
 [connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
