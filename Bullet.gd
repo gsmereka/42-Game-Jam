@@ -27,6 +27,9 @@ func _physics_process(delta: float) -> void:
 		handle_collision(collision.get_collider())
 
 func handle_collision(collider):
+	if collider is Player:
+		queue_free()
+		return
 	# Aqui você pode checar se é inimigo, parede, etc
 	if collider.has_method("take_damage"):
 		collider.take_damage()
