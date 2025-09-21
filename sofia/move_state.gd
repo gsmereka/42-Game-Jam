@@ -26,4 +26,9 @@ func Physics_Update(_delta:float):
 	
 func Exit():
 	pass
-	
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is Player:
+		pai.target = body
+		get_parent().change_state(self, "AimingState")
+	pass # Replace with function body.

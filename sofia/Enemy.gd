@@ -11,6 +11,7 @@ extends CharacterBody2D
 var screen_size
 var raycast
 var enemy_vision
+var target: Node2D
 @export var min_delay: float = 2.0  # tempo mínimo entre sons
 @export var max_delay: float = 2.5  # tempo máximo entre sons
 
