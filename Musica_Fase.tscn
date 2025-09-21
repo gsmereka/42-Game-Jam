@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4rn2v3aq3jxv"]
+
+[ext_resource type="AudioStream" uid="uid://xblwltgrvj26" path="res://Scenes/Game/Placeholder/8-bit-air-fight-158813.mp3" id="1_pe1ys"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_pe1ys")
+volume_db = -9.517
+autoplay = true
+max_distance = 10000.0
+attenuation = 0.108819
