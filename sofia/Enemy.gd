@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-@export var speed = 0.0
-@export var direction_change_time = 0.0
+@export var speed = 150.0
+@export var direction_change_time = 5.0
 
 @onready var hit_enemy: AudioStreamPlayer2D = $HitEnemy
 @onready var idle_sound: AudioStreamPlayer2D = $IdleSound

@@ -319,6 +319,7 @@ text = "Configurações"
 flat = true
 
 [node name="Credits" type="Button" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 theme = ExtResource("4_7utnp")
 theme_override_font_sizes/font_size = 64

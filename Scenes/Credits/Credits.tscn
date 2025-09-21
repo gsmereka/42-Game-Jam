@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bg12cpgnw5lpa"]
+[gd_scene load_steps=3 format=3 uid="uid://bg12cpgnw5lpa"]
 
 [ext_resource type="Script" uid="uid://cyq1bcjc1qx3o" path="res://Scenes/Credits/credits.gd" id="1_mdxjw"]
+[ext_resource type="Texture2D" uid="uid://dobf5owq610lm" path="res://Assets/gatinho_white_2_1-32.png" id="2_mrcp2"]
 
 [node name="Credits" type="Node2D"]
 script = ExtResource("1_mdxjw")
@@ -34,7 +35,7 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="CanvasLayer/ColorRect/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
-text = "Muito Obrigado por Jogar!
+text = "Muito Obrigado Por Salvar o Gato!
 
 Jogo feito por:
 
@@ -57,3 +58,8 @@ text = "
 
 Pressione Esc pra voltar"
 horizontal_alignment = 1
+
+[node name="GatinhoWhite21-32" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(1597, 394)
+scale = Vector2(43.3125, 43.5)
+texture = ExtResource("2_mrcp2")

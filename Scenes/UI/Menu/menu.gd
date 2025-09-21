@@ -1,7 +1,7 @@
 extends Control
 
 @export var vel : int = 300
-@export var main_scene : String = "res://Scenes/Game/Placeholder/Placeholder.tscn"
+@export var main_scene : String = "res://Scenes/levels/Boss.tscn"
 var to_play = false
 
 func _on_start_pressed() -> void:

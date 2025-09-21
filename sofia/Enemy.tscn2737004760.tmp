@@ -16,66 +16,48 @@ size = Vector2(24, 32)
 script/source = "extends State
 @export var pai : CharacterBody2D
 
-var bul = preload(\"res://Scenes/Game/characters/enemy/bullet.tscn\")
-var can_shoot = true
-var can_move = true
-
-@export var color : Color
-@export var stop_distance : float = 200.0
-@export var move_speed : float = 100.0
-
 func Enter():
+	print(pai.target)
+	shoot()
 	pass
 
 func Physics_Update(_delta:float):
 	if pai.target:
-		handle_movement(_delta)
 		shoot()
+	pass
 
-func handle_movement(delta: float) -> void:
-	if not can_move:
-		return
-	
-	var dist = pai.global_position.distance_to(pai.target.global_position)
-	
-	if dist > stop_distance:
-		# move em direção ao alvo
-		var direction = (pai.target.global_position - pai.global_position).normalized()
-		pai.velocity = direction * move_speed
-		pai.move_and_slide()
-	else:
-		# já está perto -> pausa movimento por 1s
-		pai.velocity = Vector2.ZERO
-		pai.move_and_slide()
-		can_move = false
-		#await get_tree().create_timer(1).timeout
-		can_move = true
+var bul = preload(\"res://Scenes/Game/characters/enemy/bullet.tscn\")
+var can_shoot = true
 
+@export var color : Color
 func shoot():
-	if not can_shoot or not pai.target:
+	if not can_shoot:
 		return
-	
 	can_shoot = false
+	
 	var direct = (pai.target.global_position - pai.global_position).normalized()
 	var bule = bul.instantiate()
-	pai.get_parent().add_child(bule)
 	bule.direct = direct
 	bule.global_position = pai.global_position
 	bule.moveSpeed = 230
 	bule.modulate = color
+	pai.get_parent().add_child(bule)
 	
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(0.3).timeout
 	can_shoot = true
 
+
 func Exit():
-	pai.target = null
-	pai.velocity = Vector2.ZERO
 	pass
+	
+
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	if not (body is Player):
+	if !body is Player:
 		return
-	get_parent().call_deferred(\"change_state\", self, \"MoveState\")
+	pai.target = null
+	get_parent().change_state(self, \"MoveState\")
+	pass # Replace with function body.
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fdex3"]
@@ -115,7 +97,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s31rl"]
-radius = 408.864
+radius = 98.0204
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 9

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed: float = 800.0
+@export var speed: float = 2000.0
 @export var lifetime: float = 3.0  # tempo máximo de vida
 var direction: Vector2 = Vector2.ZERO
 

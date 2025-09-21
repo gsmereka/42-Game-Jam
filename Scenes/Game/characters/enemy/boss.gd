@@ -16,8 +16,9 @@ func _process(delta: float) -> void:
 		#get_in()
 		launch_circular_burst_towards_player(self.get_parent().get_node("Player").position)
 	if get_parent().bossLife <= 0:
+			get_parent().die()
 			queue_free()
-	
+
 
 func startBoss() ->void:
 	$AnimatedSprite2D.frame = 0;
@@ -50,8 +51,8 @@ func launch_circular_burst_towards_player(player_position: Vector2) -> void:
 
 func openCircle(delta) -> void:
 	var quantidade = 16  # número de balas
-	var raio_inicial = 70
-	var raio_crescente = 20  # quanto o raio cresce por segundo
+	var raio_inicial = 400
+	var raio_crescente = 50  # quanto o raio cresce por segundo
 	var tempo_total = 4.0  # tempo que o círculo vai crescer
 
 	var timer = 0.0
@@ -73,4 +74,4 @@ func openCircle(delta) -> void:
 		bala.direct = direcao
 
 func take_damage():
-	get_parent().bossLife -= 5
+	get_parent().bossLife -= 0.2

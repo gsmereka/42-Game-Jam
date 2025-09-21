@@ -30,5 +30,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if !body is Player:
 		return
 	pai.target = body
-	get_parent().change_state(self, "AimPlayer")
+	get_parent().call_deferred("change_state", self, "AimPlayer")
+	#'
+	#get_parent().change_state(self, "AimPlayer")
 	pass # Replace with function body.

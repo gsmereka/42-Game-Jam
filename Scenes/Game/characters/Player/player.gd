@@ -28,7 +28,8 @@ func die():
 	if is_dead:
 		return
 	is_dead = true
-	
+	$AudioStreamPlayer2D2.stop()
+	$Walking.stop()	
 	death_sound.play()
 	death_screen.visible = true
 	$DeathPose.show()
