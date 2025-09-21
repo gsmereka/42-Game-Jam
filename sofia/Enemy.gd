@@ -4,7 +4,6 @@ extends CharacterBody2D
 @export var direction_change_time = 0.0
 
 @onready var hit_enemy: AudioStreamPlayer2D = $HitEnemy
-#@onready var death_sound: AudioStreamPlayer2D = $DeathSound
 @onready var idle_sound: AudioStreamPlayer2D = $IdleSound
 
 @export var direction = Vector2.ZERO
@@ -64,4 +63,5 @@ func change_direction():
 
 func take_damage():
 	hit_enemy.play()
+	await get_tree().create_timer(0.5).timeout
 	queue_free()

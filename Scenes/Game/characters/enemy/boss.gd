@@ -75,7 +75,7 @@ func openCircle(delta) -> void:
 		bala.position = self.position
 		bala.direct = direcao
 
-func take_damage():
-	life -= 1
-	if life <= 0:
-		$StateManager.force_change_state("DyingState")
+#func take_damage():
+	#life -= 1
+	#if life <= 0:
+		#$StateManager.force_change_state("DyingState")
