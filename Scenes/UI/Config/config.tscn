@@ -1,15 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbeii3ai8clqe"]
+[gd_scene load_steps=12 format=3 uid="uid://bbeii3ai8clqe"]
 
+[ext_resource type="Theme" uid="uid://cbyo6hgahchbx" path="res://Scenes/UI/Thema/menuThema.tres" id="1_bepgo"]
 [ext_resource type="PackedScene" uid="uid://kc0kjp1jkp70" path="res://Scenes/UI/Utils/BoxBackground/box_background.tscn" id="1_kpsrv"]
 [ext_resource type="Script" uid="uid://cl54t07bsrtpb" path="res://Scenes/UI/Config/config.gd" id="1_ottpu"]
+[ext_resource type="Texture2D" uid="uid://cahvtgn37f7nb" path="res://Assets/Utils/space_background.png" id="3_1slo4"]
+[ext_resource type="Shader" uid="uid://b06jjgo2yit1a" path="res://Scenes/UI/Config/config.gdshader" id="3_n6mrp"]
 [ext_resource type="Script" uid="uid://bfghb3vif2tvy" path="res://Scenes/UI/Config/volume_slider.gd" id="3_ottpu"]
+[ext_resource type="FontFile" uid="uid://dx83sjys7wof2" path="res://Assets/Fonts/karma_2/Karma Suture.otf" id="4_03018"]
 [ext_resource type="Script" uid="uid://b2oh647kdi85s" path="res://Scenes/UI/Config/screen_button.gd" id="4_bepgo"]
+[ext_resource type="Theme" uid="uid://bmeflfa7fhwbf" path="res://Scenes/UI/Config/config.tres" id="6_aji8k"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i0h27"]
+shader = ExtResource("3_n6mrp")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kpsrv"]
 bg_color = Color(0.359069, 0.359069, 0.359069, 0)
-
-[sub_resource type="Theme" id="Theme_kpsrv"]
-/styles/background = null
 
 [node name="Config" type="Control"]
 layout_mode = 3
@@ -20,8 +25,20 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme = ExtResource("1_bepgo")
 script = ExtResource("1_ottpu")
 metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(0.473976, 0.473976, 0.473976, 1)
+material = SubResource("ShaderMaterial_i0h27")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_1slo4")
 
 [node name="BoxBackground2" parent="." node_paths=PackedStringArray("node_ref") instance=ExtResource("1_kpsrv")]
 offset_left = 530.5
@@ -33,18 +50,23 @@ grow_vertical = 1
 node_ref = NodePath("../Config Label")
 
 [node name="Config Label" type="Label" parent="."]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.222
-anchor_right = 0.5
-anchor_bottom = 0.222
-offset_left = -55.5
-offset_top = 6.14398
-offset_right = 55.5
-offset_bottom = 29.144
+anchor_left = 0.4625
+anchor_top = 0.5
+anchor_right = 0.4625
+anchor_bottom = 0.5
+offset_left = -412.0
+offset_top = -303.0
+offset_right = 553.0
+offset_bottom = -148.0
 grow_horizontal = 2
-text = "Configuraçoes"
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_03018")
+theme_override_font_sizes/font_size = 128
+text = " Configuraçoes "
+vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="BoxBackground" parent="." node_paths=PackedStringArray("node_ref") instance=ExtResource("1_kpsrv")]
@@ -63,10 +85,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -60.0
-offset_top = -120.0
-offset_right = 60.0
-offset_bottom = 120.0
+offset_left = -173.0
+offset_top = -73.0
+offset_right = 174.0
+offset_bottom = 348.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -77,23 +99,38 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_kpsrv")
 [node name="VolumeLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("4_03018")
+theme_override_font_sizes/font_size = 48
 text = "Volume:"
 
 [node name="VolumeSlider" type="HSlider" parent="VBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 script = ExtResource("3_ottpu")
 
+[node name="Void8" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_kpsrv")
+
+[node name="Void9" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_kpsrv")
+
 [node name="ScreenLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("4_03018")
+theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxFlat_kpsrv")
 text = "Exibição:"
 
 [node name="ScreenButton" type="OptionButton" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme = ExtResource("6_aji8k")
+theme_override_fonts/font = ExtResource("4_03018")
+theme_override_font_sizes/font_size = 48
 selected = 1
 allow_reselect = true
 item_count = 2
@@ -111,12 +148,22 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_kpsrv")
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_kpsrv")
 
+[node name="Void7" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_kpsrv")
+
 [node name="Fechar" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme = SubResource("Theme_kpsrv")
+theme = ExtResource("6_aji8k")
+theme_override_fonts/font = ExtResource("4_03018")
+theme_override_font_sizes/font_size = 48
 text = "Fechar
 "
+
+[node name="Void6" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_kpsrv")
 
 [connection signal="item_selected" from="VBoxContainer/ScreenButton" to="VBoxContainer/ScreenButton" method="_on_item_selected"]
 [connection signal="pressed" from="VBoxContainer/Fechar" to="." method="_on_sair_pressed"]
