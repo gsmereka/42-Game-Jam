@@ -50,3 +50,6 @@ func change_direction():
 	if attempts >= 10:
 		var screen_center = screen_size * 100
 		direction = global_position.direction_to(screen_center)
+
+func take_damage():
+	queue_free()
