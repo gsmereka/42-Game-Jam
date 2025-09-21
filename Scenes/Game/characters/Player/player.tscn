@@ -189,7 +189,7 @@ initial_state = NodePath("StateMove")
 script = ExtResource("4_awq5b")
 player = NodePath("../..")
 origin_bullet = NodePath("Marker2D")
-fire_rate = 0.4
+fire_rate = 0.2
 
 [node name="Marker2D" type="Marker2D" parent="StateManager/StateMove"]
 position = Vector2(33, 0)

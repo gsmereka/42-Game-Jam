@@ -73,4 +73,4 @@ func openCircle(delta) -> void:
 		bala.direct = direcao
 
 func take_damage():
-	get_parent().bossLife -= 5
+	get_parent().bossLife -= 0.2
