@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://dsqdj3rnksu66"]
 
 [ext_resource type="Script" uid="uid://n6ntknr6citb" path="res://Scenes/Game/Placeholder/placeholder.gd" id="1_dnif1"]
-[ext_resource type="AudioStream" uid="uid://clofo7hgx4sfj" path="res://Assets/Music/Castle_Music.mp3" id="2_mk1xm"]
+[ext_resource type="PackedScene" uid="uid://b4rn2v3aq3jxv" path="res://Musica_Fase.tscn" id="2_70v8g"]
 [ext_resource type="Texture2D" uid="uid://b6k4hkde4sr6u" path="res://Assets/graveyardtilesetnew/png/BG.png" id="2_tvfm1"]
 [ext_resource type="Texture2D" uid="uid://t3387fnnbk3b" path="res://Assets/graveyardtilesetnew/png/Objects/ArrowSign.png" id="3_mk1xm"]
 [ext_resource type="Texture2D" uid="uid://ccdvdqq2uirck" path="res://Assets/graveyardtilesetnew/png/Objects/DeadBush.png" id="4_5gvfw"]
@@ -65,10 +65,8 @@ scale = Vector2(2, 2)
 [node name="Node2D" type="Node2D" parent="."]
 script = ExtResource("1_dnif1")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Node2D"]
+[node name="AudioStreamPlayer2D" parent="Node2D" instance=ExtResource("2_70v8g")]
 position = Vector2(266, 524)
-stream = ExtResource("2_mk1xm")
-autoplay = true
 
 [node name="Bg" type="Sprite2D" parent="Node2D"]
 position = Vector2(335, 228)
