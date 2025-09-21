@@ -1,7 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvna4acg7h8hr"]
+[gd_scene load_steps=8 format=3 uid="uid://bvna4acg7h8hr"]
 
 [ext_resource type="Script" uid="uid://dby5ul6m4q10p" path="res://Scenes/UI/Pause/pause.gd" id="1_7vy5o"]
 [ext_resource type="PackedScene" uid="uid://kc0kjp1jkp70" path="res://Scenes/UI/Utils/BoxBackground/box_background.tscn" id="2_h6s05"]
+[ext_resource type="Shader" uid="uid://b06jjgo2yit1a" path="res://Scenes/Shaders/blackandwhite.gdshader" id="2_upn06"]
+[ext_resource type="FontFile" uid="uid://dx83sjys7wof2" path="res://Assets/Fonts/karma_2/Karma Suture.otf" id="3_1sdlc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qertn"]
+shader = ExtResource("2_upn06")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kpsrv"]
 bg_color = Color(0.359069, 0.359069, 0.359069, 0)
@@ -15,6 +20,7 @@ script = ExtResource("1_7vy5o")
 metadata/_edit_lock_ = true
 
 [node name="ButtonBlock" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_qertn")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -42,9 +48,10 @@ offset_top = 6.14398
 offset_right = 55.5
 offset_bottom = 29.144
 grow_horizontal = 2
-text = "Pause"
+theme_override_fonts/font = ExtResource("3_1sdlc")
+theme_override_font_sizes/font_size = 128
+text = " Pause "
 horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="BoxBackground" parent="." node_paths=PackedStringArray("node_ref") instance=ExtResource("2_h6s05")]
 offset_left = 530.5
@@ -56,15 +63,16 @@ grow_vertical = 1
 node_ref = NodePath("../VBoxContainer")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(390, 300)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -78.5
-offset_top = -110.5
-offset_right = 78.5
-offset_bottom = 110.5
+offset_left = -195.0
+offset_top = -42.0
+offset_right = 195.0
+offset_bottom = 346.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -74,10 +82,14 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_kpsrv")
 
 [node name="Continue" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_1sdlc")
+theme_override_font_sizes/font_size = 48
 text = "Continuar"
 
 [node name="Config" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_1sdlc")
+theme_override_font_sizes/font_size = 48
 text = "Configurações"
 
 [node name="Void2" type="Label" parent="VBoxContainer"]
@@ -90,12 +102,16 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_kpsrv")
 
 [node name="MainMenu" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_1sdlc")
+theme_override_font_sizes/font_size = 48
 text = "Voltar ao Menu"
 
 [node name="QuitGame" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = SubResource("Theme_kpsrv")
+theme_override_fonts/font = ExtResource("3_1sdlc")
+theme_override_font_sizes/font_size = 48
 text = "Sair do Jogo"
 
 [node name="Void4" type="Label" parent="VBoxContainer"]
