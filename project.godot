@@ -13,6 +13,7 @@ config_version=5
 config/name="42-Game-Jam"
 run/main_scene="uid://dl6nhc1603s8e"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [audio]
@@ -22,6 +23,14 @@ buses/default_bus_layout=""
 [autoload]
 
 SceneLoader="*res://Singletons/scene_loader.gd"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/window_width_override=1152
+window/size/window_height_override=648
+window/stretch/mode="canvas_items"
 
 [input]
 
