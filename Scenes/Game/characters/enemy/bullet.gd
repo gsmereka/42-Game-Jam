@@ -4,7 +4,7 @@ var moveSpeed: float = 200.0
 var direct = Vector2.ZERO
 
 func _ready() -> void:
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(4).timeout
 	if is_inside_tree():
 		queue_free()
 	

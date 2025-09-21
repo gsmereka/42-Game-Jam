@@ -50,8 +50,8 @@ func launch_circular_burst_towards_player(player_position: Vector2) -> void:
 
 func openCircle(delta) -> void:
 	var quantidade = 16  # número de balas
-	var raio_inicial = 70
-	var raio_crescente = 20  # quanto o raio cresce por segundo
+	var raio_inicial = 400
+	var raio_crescente = 50  # quanto o raio cresce por segundo
 	var tempo_total = 4.0  # tempo que o círculo vai crescer
 
 	var timer = 0.0

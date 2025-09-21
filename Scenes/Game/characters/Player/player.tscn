@@ -15,6 +15,21 @@
 [ext_resource type="FontFile" uid="uid://ogggsxi21ib1" path="res://Assets/Fonts/karma_2/Karma Future.otf" id="8_i3msf"]
 [ext_resource type="AudioStream" uid="uid://bfsk03vou85mu" path="res://Scenes/Game/characters/Player/st3-footstep-sfx-323056.mp3" id="10_i3msf"]
 
+[sub_resource type="Animation" id="Animation_dmp7b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Light3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-7, -1)]
+}
+
 [sub_resource type="Animation" id="Animation_5yj3n"]
 resource_name = "fire"
 loop_mode = 1
@@ -29,21 +44,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-7, -1), Vector2(-22, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_dmp7b"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Light3:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-7, -1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dmp7b"]
@@ -171,7 +171,7 @@ hframes = 2
 [node name="Sprite" type="Node2D" parent="."]
 
 [node name="Marker2D" type="Marker2D" parent="Sprite"]
-position = Vector2(21, 0)
+position = Vector2(29, 0)
 
 [node name="Sprite-0002" type="Sprite2D" parent="Sprite"]
 show_behind_parent = true
@@ -189,10 +189,10 @@ initial_state = NodePath("StateMove")
 script = ExtResource("4_awq5b")
 player = NodePath("../..")
 origin_bullet = NodePath("Marker2D")
-fire_rate = 0.5
+fire_rate = 0.4
 
 [node name="Marker2D" type="Marker2D" parent="StateManager/StateMove"]
-position = Vector2(21, 0)
+position = Vector2(33, 0)
 
 [node name="DyingState" type="Node2D" parent="StateManager" node_paths=PackedStringArray("player")]
 script = SubResource("GDScript_e3wm0")

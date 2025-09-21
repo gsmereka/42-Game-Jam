@@ -1,5 +1,7 @@
 extends Area2D
 
-func _on_Area2D_body_entered(body: Node) -> void:
-	if body.name == "Player":
-		get_parent().showLifeBar = true
+
+func _on_body_entered(body: Node2D) -> void:
+	if body is Player:
+		get_parent().startBossBattle = true
+	pass # Replace with function body.
