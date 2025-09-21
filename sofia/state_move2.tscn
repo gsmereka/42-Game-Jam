@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bu3gx51v63idp"]
-
-[ext_resource type="Script" uid="uid://cr2u3xjfuoink" path="res://Scenes/Game/characters/state_move.gd" id="1_7wq1q"]
-
-[node name="StateMove" type="Node2D" node_paths=PackedStringArray("player", "fov")]
-script = ExtResource("1_7wq1q")
-player = NodePath("")
-fov = NodePath("")
