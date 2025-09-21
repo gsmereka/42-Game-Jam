@@ -10,6 +10,7 @@
 texture = ExtResource("1_isv0s")
 
 [node name="Player" parent="." instance=ExtResource("2_rks41")]
+position = Vector2(232, 13)
 
 [node name="StateMove" parent="Player/StateManager" index="0"]
 fire_rate = 0.2

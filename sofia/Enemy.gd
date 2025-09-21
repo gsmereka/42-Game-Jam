@@ -13,7 +13,7 @@ var raycast
 var enemy_vision
 @export var min_delay: float = 2.0  # tempo mínimo entre sons
 @export var max_delay: float = 2.5  # tempo máximo entre sons
-
+var target : Node2D
 func _ready():
 	$AnimatedSprite2D.play("default")
 	screen_size = get_viewport_rect().size
