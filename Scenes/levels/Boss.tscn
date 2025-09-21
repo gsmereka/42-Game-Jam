@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=4 uid="uid://boiah1xd03v0w"]
+[gd_scene load_steps=14 format=4 uid="uid://boiah1xd03v0w"]
 
 [ext_resource type="Texture2D" uid="uid://xdsj26t38o5l" path="res://Assets/Utils/Space #Sponsored , #SPONSORED, #art#Pixel#style#Ai.jpeg" id="1_g1wwi"]
+[ext_resource type="Script" uid="uid://c4yfsn8cj0act" path="res://Scenes/levels/boss.gd" id="1_s6dab"]
 [ext_resource type="Texture2D" uid="uid://0k8w8cileuyl" path="res://Assets/MapTilesets/tileset_osicat.png" id="2_3nrpt"]
+[ext_resource type="PackedScene" uid="uid://dwwf2caitbsdd" path="res://sofia/Enemy.tscn" id="2_dc8pd"]
 [ext_resource type="PackedScene" uid="uid://bffcrsi3nfqqb" path="res://Scenes/Game/characters/Player/player.tscn" id="4_s6dab"]
 [ext_resource type="Texture2D" uid="uid://dxmpaw7qrghna" path="res://Assets/characters/orange_cato-export.png" id="5_3nrpt"]
 [ext_resource type="PackedScene" uid="uid://drvpjtynaqbov" path="res://Scenes/Game/characters/enemy/boss.tscn" id="6_dc8pd"]
@@ -1574,7 +1576,8 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_31bl1")
 
 [node name="FisrtAttempt" type="Node2D"]
-position = Vector2(27, -202)
+position = Vector2(28, -188)
+script = ExtResource("1_s6dab")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -1599,13 +1602,22 @@ position = Vector2(847, 86)
 scale = Vector2(5, 5)
 
 [node name="Boss3" parent="." instance=ExtResource("6_dc8pd")]
-position = Vector2(-270, 108)
+position = Vector2(-224, 51)
 scale = Vector2(5, 5)
 
 [node name="Player" parent="." instance=ExtResource("4_s6dab")]
-position = Vector2(-95, 3128)
+position = Vector2(324, 1168)
 rotation = -1.5193
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(255, 34)
 texture = ExtResource("5_3nrpt")
+
+[node name="Enemy" parent="." instance=ExtResource("2_dc8pd")]
+position = Vector2(-700, 3128)
+
+[node name="Enemy2" parent="." instance=ExtResource("2_dc8pd")]
+position = Vector2(-880, 3348)
+
+[node name="Enemy3" parent="." instance=ExtResource("2_dc8pd")]
+position = Vector2(-649, 3410)

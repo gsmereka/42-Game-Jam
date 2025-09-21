@@ -14,6 +14,9 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if position.x > 300 and position.x < 350 and position.y > 550 and position.y < 600:
+		get_parent().startBossBattle = true
+	
 	pass
 
 
