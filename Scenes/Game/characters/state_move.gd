@@ -57,7 +57,13 @@ func move(delta: float) -> void:
 	
 	vector = vector.normalized()
 
-	player.velocity = vector * player.moveSpeed
+	var speedt = player.moveSpeed
+	if Input.is_action_pressed("ui_accept"):
+		speedt *= 3
+		$"../../FireBoost".show()
+	else:
+		$"../../FireBoost".hide()
+	player.velocity = vector * speedt
 	player.move_and_slide()
 	
 	if vector != Vector2.ZERO:
@@ -65,3 +71,6 @@ func move(delta: float) -> void:
 			footstep_sound.play()
 	else:
 		footstep_sound.stop()
+
+func Exit():
+	$"../../FireBoost".hide()
