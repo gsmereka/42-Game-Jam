@@ -1,6 +1,6 @@
 extends Node2D
 
-var moveSpeed: float = 300.0
+var moveSpeed: float = 200.0
 var direct = Vector2.ZERO
 
 func _ready() -> void:
@@ -10,3 +10,10 @@ func _ready() -> void:
 	
 func _physics_process(delta: float) -> void:
 	position += moveSpeed * delta * direct
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is Player:
+		if body.has_method("take_damage"):
+			body.take_damage()
+	pass # Replace with function body.
