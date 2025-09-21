@@ -5,6 +5,8 @@ extends State
 var can_shoot = true
 @export var fire_rate = 0.0
 @export var bullet_scene = preload("res://Bullet.tscn")
+@onready var footstep_sound: AudioStreamPlayer2D = $"../../Walking"
+@onready var shoot_sound: AudioStreamPlayer2D = $"../../ShootSound"
 
 func Enter():
 	await get_tree().create_timer(1).timeout
@@ -16,9 +18,6 @@ func Physics_Update(delta):
 			
 		move(delta)
 		player.look_at(get_global_mouse_position())
-		
-
-		# Atira com espaço
 
 func shoot():
 	can_shoot = false
@@ -30,6 +29,7 @@ func shoot():
 	var dir = (get_global_mouse_position() - origin_bullet.global_position).normalized()
 	bullet.setup(dir, origin_bullet.global_position)
 	
+	shoot_sound.play()
 
 	# Cooldown
 	await get_tree().create_timer(fire_rate).timeout
@@ -50,3 +50,8 @@ func move(delta: float) -> void:
 	player.velocity = vector * player.moveSpeed
 	player.move_and_slide()
 	
+	if vector != Vector2.ZERO:
+		if not footstep_sound.playing:
+			footstep_sound.play()
+	else:
+		footstep_sound.stop()

@@ -16,11 +16,18 @@ fire_rate = 0.2
 
 [node name="Enemy2" parent="." instance=ExtResource("3_rks41")]
 position = Vector2(-286, 20)
+speed = 100.0
+direction_change_time = 10.0
 
 [node name="Enemy" parent="." instance=ExtResource("3_rks41")]
 position = Vector2(-148, 69)
+speed = 100.0
+direction_change_time = 10.0
 
 [node name="Enemy3" parent="." instance=ExtResource("3_rks41")]
 position = Vector2(-94, -46)
+motion_mode = 1
+speed = 100.0
+direction_change_time = 10.0
 
 [editable path="Player"]
