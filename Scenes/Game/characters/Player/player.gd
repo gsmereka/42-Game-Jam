@@ -7,3 +7,9 @@ class_name Player
 
 func _physics_process(delta: float) -> void:
 	pass
+
+
+func take_damage():
+	life -= 1
+	if life <= 0:
+		$StateManager.force_change_state("DyingState")

@@ -13,3 +13,7 @@ func move(delta) -> void:
 	var dir = Vector2(1, -1)
 	
 	position += dir * speed * delta
+
+func take_damage():
+	queue_free()
+	pass
