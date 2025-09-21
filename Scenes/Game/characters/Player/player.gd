@@ -8,9 +8,9 @@ class_name Player
 func _ready() -> void:
 	var current_scene = get_tree().current_scene.name
 
-	if current_scene == "FisrtAttempt":
-		$FOV.visible = false
-		$Shadows.visible = false
+	#if current_scene == "FisrtAttempt":
+		#$FOV.visible = false
+		#$Shadows.visible = false
 
 
 func _physics_process(delta: float) -> void:

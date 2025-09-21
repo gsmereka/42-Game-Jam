@@ -4,9 +4,9 @@ extends CharacterBody2D
 func _ready() -> void:
 	$AnimatedSprite2D.play("default")
 
-var use_atackk = true
+var	use_atackk = true
 
- func _physics_process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if (use_atackk):
 		openCircle(delta)
 		use_atackk = false
