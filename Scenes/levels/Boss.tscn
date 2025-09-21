@@ -1610,6 +1610,7 @@ actvate = true
 [node name="Boss3" parent="." instance=ExtResource("6_dc8pd")]
 position = Vector2(-224, 51)
 scale = Vector2(5, 5)
+actvate = false
 
 [node name="Player" parent="." instance=ExtResource("4_s6dab")]
 position = Vector2(235, 490)

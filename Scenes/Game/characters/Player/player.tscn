@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bffcrsi3nfqqb"]
+[gd_scene load_steps=25 format=3 uid="uid://bffcrsi3nfqqb"]
 
 [ext_resource type="Script" uid="uid://bpgw1tdp35qy7" path="res://Scenes/Game/characters/Player/player.gd" id="1_hpoch"]
 [ext_resource type="PackedScene" uid="uid://c1diffaf2650k" path="res://Scenes/StateMachine/state_manager.tscn" id="3_42rbx"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://lw0uoa0jwwwu" path="res://Assets/player/Sprite-0002.png" id="6_42rbx"]
 [ext_resource type="AudioStream" uid="uid://c5qyx41oc5lxq" path="res://Scenes/Game/characters/Player/single-gunshot-54-40780.mp3" id="6_fmfgu"]
 [ext_resource type="Texture2D" uid="uid://qkgslf00aryi" path="res://Assets/ui/lifebar.png" id="7_e3wm0"]
+[ext_resource type="AudioStream" uid="uid://hiijh1xmt8yo" path="res://sofia/8-bit-game-over-sound-effect-331435.mp3" id="8_5chic"]
 [ext_resource type="AudioStream" uid="uid://bdiwqc55rne65" path="res://Scenes/Game/characters/Player/video-game-hit-noise-001-135821.mp3" id="8_8rvb4"]
 [ext_resource type="Script" uid="uid://k620u80y7j7n" path="res://Scenes/Game/characters/Player/animated_sprite_2d.gd" id="8_14ubd"]
 [ext_resource type="Shader" uid="uid://b06jjgo2yit1a" path="res://Scenes/Shaders/blackandwhite.gdshader" id="8_e3wm0"]
@@ -141,6 +142,9 @@ parameters/looping = true
 
 [node name="ShootSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_fmfgu")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_5chic")
 
 [node name="HitPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_8rvb4")

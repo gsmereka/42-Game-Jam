@@ -81,3 +81,4 @@ volume_db = -13.595
 
 [node name="HitEnemy" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_s31rl")
+volume_db = 6.327
