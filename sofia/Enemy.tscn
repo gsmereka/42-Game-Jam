@@ -1,5 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dwwf2caitbsdd"]
-
+[gd_scene load_steps=15 format=3 uid="uid://dwwf2caitbsdd"]
 
 [ext_resource type="Texture2D" uid="uid://b06adf5r3s4cd" path="res://icon.svg" id="1_3gvst"]
 [ext_resource type="Script" uid="uid://ccciyjiwyf633" path="res://sofia/Enemy.gd" id="1_55jtl"]
@@ -12,36 +11,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_55jtl"]
 size = Vector2(50, 54)
-
-[sub_resource type="GDScript" id="GDScript_fdex3"]
-script/source = "extends State
-@export var pai : CharacterBody2D
-
-func Enter():
-	pass
-	
-func Update(_delta:float):
-	shoot()
-	pass
-
-func shoot():
-	await  get_tree().create_timer(1).timeout
-	var direct = (global_position - pai.target.global_position)
-	var bul = preload(\"res://Scenes/Game/characters/enemy/bullet.tscn\").instantiate()
-	bul.direct = direct
-	pai.get_parent().add_child(pai)
-	
-func Physics_Update(_delta:float):
-	pass
-	
-func Exit():
-	pass
-
-func _on_area_2d_body_exited(body: Node2D) -> void:
-	if get_parent().current_state == self:
-		get_parent().change_state(self, \"MoveState\")
-	pass # Replace with function body.
-"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fdex3"]
 atlas = ExtResource("6_726of")
@@ -79,9 +48,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_fdex3"]
-radius = 205.002
-
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 9
 collision_mask = 9
@@ -103,26 +69,16 @@ initial_state = NodePath("MoveState")
 script = ExtResource("4_prj20")
 pai = NodePath("../..")
 
-[node name="FreeeState" type="Node2D" parent="StateManager" node_paths=PackedStringArray("pai")]
+[node name="FreeeState" type="Node2D" parent="StateManager"]
 script = ExtResource("5_0aeik")
-pai = NodePath("../..")
-
-[node name="AimingState" type="Node2D" parent="StateManager" node_paths=PackedStringArray("pai")]
-script = SubResource("GDScript_fdex3")
-pai = NodePath("../..")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fdex3")
 
 [node name="IdleSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_fdex3")
-[node name="Area2D" type="Area2D" parent="."]
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_fdex3")
-[connection signal="body_entered" from="Area2D" to="StateManager/MoveState" method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="StateManager/AimingState" method="_on_area_2d_body_exited"]
 volume_db = -13.595
+
 [node name="HitEnemy" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_s31rl")
 volume_db = 6.327
-
