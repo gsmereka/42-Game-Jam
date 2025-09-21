@@ -1,5 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://dwwf2caitbsdd"]
 
+
 [ext_resource type="Texture2D" uid="uid://b06adf5r3s4cd" path="res://icon.svg" id="1_3gvst"]
 [ext_resource type="Script" uid="uid://ccciyjiwyf633" path="res://sofia/Enemy.gd" id="1_55jtl"]
 [ext_resource type="PackedScene" uid="uid://c1diffaf2650k" path="res://Scenes/StateMachine/state_manager.tscn" id="3_kcmjr"]
@@ -7,6 +8,7 @@
 [ext_resource type="Script" uid="uid://c451tt04ouhqb" path="res://sofia/freee_state.gd" id="5_0aeik"]
 [ext_resource type="Texture2D" uid="uid://4ytvxu8xteu3" path="res://sofia/assets/inimigo-rascunho-sheet.png" id="6_726of"]
 [ext_resource type="AudioStream" uid="uid://c04x8nnxjdql2" path="res://sofia/WhatsApp Audio 2025-09-21 at 6.52.08 AM.mp3" id="7_fdex3"]
+[ext_resource type="AudioStream" uid="uid://bmuq1v2k4wofm" path="res://sofia/jump-climb-or-damage-sound-f-95942.mp3" id="8_s31rl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_55jtl"]
 size = Vector2(50, 54)
@@ -114,11 +116,13 @@ sprite_frames = SubResource("SpriteFrames_fdex3")
 
 [node name="IdleSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_fdex3")
-
 [node name="Area2D" type="Area2D" parent="."]
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_fdex3")
-
 [connection signal="body_entered" from="Area2D" to="StateManager/MoveState" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="StateManager/AimingState" method="_on_area_2d_body_exited"]
+volume_db = -13.595
+[node name="HitEnemy" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_s31rl")
+volume_db = 6.327
+

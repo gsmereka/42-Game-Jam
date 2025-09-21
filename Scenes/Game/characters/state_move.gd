@@ -20,18 +20,25 @@ func Physics_Update(delta):
 		player.look_at(get_global_mouse_position())
 
 func shoot():
+	if not can_shoot:
+		return
 	can_shoot = false
 
 	var bullet = bullet_scene.instantiate()
-	player.get_parent().add_child(bullet)
 
-	# Direção = da arma até o mouse
+	# direção da bala
 	var dir = (get_global_mouse_position() - origin_bullet.global_position).normalized()
+
+	# adiciona a bala na cena principal
+	get_tree().current_scene.add_child(bullet)
+
+	# configura a bala (posição e direção)
 	bullet.setup(dir, origin_bullet.global_position)
-	
+
+	# toca som
 	shoot_sound.play()
 
-	# Cooldown
+	# cooldown
 	await get_tree().create_timer(fire_rate).timeout
 	can_shoot = true
 

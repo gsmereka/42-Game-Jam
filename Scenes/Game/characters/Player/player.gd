@@ -4,6 +4,11 @@ class_name Player
 
 @export var moveSpeed: float = 200.0;
 @export var life: int = 5
+@onready var hit_player: AudioStreamPlayer2D = $HitPlayer
+@onready var death_sound: AudioStreamPlayer2D = $DeathSound
+@onready var death_screen: CanvasLayer = $TelaDeMorte
+
+var is_dead = false
 
 func _ready() -> void:
 	var current_scene = get_tree().current_scene.name
@@ -19,8 +24,25 @@ func _physics_process(delta: float) -> void:
 	
 	pass
 
+func die():
+	if is_dead:
+		return  # evita tocar som de morte de novo
+	is_dead = true
+
+	death_sound.play()
+	death_screen.visible = true
+
+	velocity = Vector2.ZERO
+	set_physics_process(false)
+	$CollisionShape2D.disabled = true
+
+	await get_tree().create_timer(2.4).timeout
+	get_tree().change_scene_to_file("res://Scenes/UI/Menu/menu.tscn")
+
 
 func take_damage():
 	life -= 1
+	hit_player.play()
 	if life <= 0:
-		$StateManager.force_change_state("DyingState")
+		hit_player.stop()
+		die()
